@@ -30,6 +30,9 @@ dependencies:
   rxdart: ^0.22.5
   # 状态管理 https://github.com/rrousselGit/provider
   provider: ^4.0.1
+  # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
+  keyboard_actions: ^2.1.2
+
 
 dev_dependencies:
   flutter_test:
