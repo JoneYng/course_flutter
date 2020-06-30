@@ -13,6 +13,8 @@ import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flustars/flustars.dart';
 
+import 'login/login_router.dart';
+
 class SplashPage extends StatefulWidget {
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -40,9 +42,9 @@ class _SplashPageState extends State<SplashPage> {
         _goLogin();
     });
   }
-
+//Routes.home
   _goLogin() {
-    NavigatorUtils.push(context, Routes.home, clearStack: true);
+    NavigatorUtils.push(context, LoginRouter.loginPage, clearStack: true);
   }
 
   @override

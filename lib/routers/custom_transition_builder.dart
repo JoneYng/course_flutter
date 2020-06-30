@@ -13,7 +13,6 @@ class CustomTransitionsBuilder extends PageTransitionsBuilder {
       Animation<double> secondaryAnimation,
       Widget child) {
     ///复写动画
-
     Animation<double> customAnimation = CurvedAnimation(
         parent: animation,
         curve: Curves.easeIn,

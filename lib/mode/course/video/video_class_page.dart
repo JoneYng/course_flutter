@@ -1,8 +1,9 @@
-import 'package:courseflutter/mode/video/presenter/video_class_presenter.dart';
-import 'package:courseflutter/mode/video/provider/video_provider.dart';
+import 'package:courseflutter/mode/course/video/presenter/video_class_presenter.dart';
+import 'package:courseflutter/mode/course/video/provider/video_provider.dart';
+import 'package:courseflutter/mode/course/video/video_entity.dart';
 import 'package:courseflutter/mvp/base_page_state.dart';
 import 'package:courseflutter/res/resources.dart';
-import 'package:courseflutter/mode/video/video_entity.dart';
+import 'package:courseflutter/util/log_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -23,33 +24,30 @@ class VideoClassPageState
 
   int _page = 1;
   ScrollController _controller;
-  int _count = 20;
-  bool _isLoding = false;
+  int _count = 10;
   bool _isRefreshing = false;
+  bool isLoding = true;
   String loadingText = "加载中.....";
 
-  void setVideoList(List<VideoEntity> user) {
-    _provider.setVideoList(user);
+  void setVideoList(List<VideoEntity> user, bool isLoadMore) {
+    _provider.setVideoList(user, isLoadMore);
+    isLoding = isLoadMore;
   }
 
   @override
   void initState() {
     _controller = ScrollController();
-    _videoClassPresenter.getVideoList(_page, _count);
-//    _controller.addListener(() {
-//      int offset = _controller.position.pixels.toInt();
-//      print("滑动距离$offset");
-//      // 如果滑动到底部
-//      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
-//        setState(() {
-//          _isLoding = true;
-//        });
-//      } else {
-//        setState(() {
-//          _isLoding = false;
-//        });
-//      }
-//    });
+    _videoClassPresenter.getVideoList(_page, _count, true);
+    _controller.addListener(() {
+      int offset = _controller.position.pixels.toInt();
+      // 如果滑动到底部
+      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+        print("滑动到底部");
+        if (isLoding) {
+          _videoClassPresenter.getVideoList(_page++, _count, false);
+        }
+      }
+    });
   }
 
   @override
@@ -75,18 +73,24 @@ class VideoClassPageState
 
   Widget _widget(VideoProvider _provider) {
     if (_provider.videoEntity != null) {
+      _sideoEntityList.clear();
       _sideoEntityList.addAll(_provider.videoEntity);
+      Log.d("_sideoEntityList=>${_sideoEntityList.length}");
     }
     if (_sideoEntityList != null && _sideoEntityList.length > 0) {
       return Scaffold(
-          body: new CustomScrollView(
+        body: RefreshIndicator(
+          child: new CustomScrollView(
             primary: false,
             controller: _controller,
+            physics: ScrollPhysics(),
             //滑动效果，如阻尼效果等等
-            physics: const BouncingScrollPhysics(),
-
+//            physics: const BouncingScrollPhysics(),
             slivers: <Widget>[
               getTitle(),
+              SliverToBoxAdapter(
+                child: Gaps.vGap10,
+              ),
               SliverGrid(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 250.0,
@@ -109,11 +113,19 @@ class VideoClassPageState
                       child: new Text(loadingText),
                     ),
                   ),
-                  visible: _isLoding,
+                  visible: _provider.isLoadMore,
                 ),
               ),
             ],
           ),
+          onRefresh: () {
+            return _RrefreshPull().then((value) {
+              print('success');
+            }).catchError((error) {
+              print('failed');
+            });
+          },
+        ),
       );
     } else {
       return Scaffold(
@@ -128,11 +140,13 @@ class VideoClassPageState
     }
   }
 
-  void _RrefreshPull() {
-    _page=1;
-    _count=10;
+  Future<String> _RrefreshPull() async {
+    _page = 1;
+    _count = 10;
     _sideoEntityList.clear();
-    _videoClassPresenter.getVideoList(_page, _count);
+    _videoClassPresenter.getVideoList(_page, _count, true);
+    await Future.delayed(new Duration(seconds: 1));
+    return "_RrefreshPull";
   }
 
 //获取到插件与原生的交互通道

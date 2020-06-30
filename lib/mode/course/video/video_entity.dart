@@ -21,12 +21,11 @@ class VideoEntity {
 class VideoRoot {
 	List<dynamic> item;
 	List<VideoEntity> mVideoEntityList=[];
-	var total_page;
+	int total_page;
 	VideoRoot({this.item,this.total_page});
 
 	VideoRoot.fromJson(Map<String, dynamic> json) {
 		print("total_page:${json['total_page']}");
-
 		item = json['item'];
 		mVideoEntityList=fromItem(item);
 		total_page = json['total_page'];

@@ -1,13 +1,4 @@
-import 'package:courseflutter/mode/splash_page.dart';
-import 'package:courseflutter/provider/theme_provider.dart';
-import 'package:courseflutter/routers/application.dart';
-import 'package:courseflutter/routers/routers.dart';
-import 'package:courseflutter/util/log_utils.dart';
-import 'package:fluro/fluro.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
-import 'package:provider/provider.dart';
 
 class ScrollableDemoState extends State<ScrollableDemo> {
   ScrollController _controller;
@@ -206,7 +197,6 @@ class ScrollableDemoState extends State<ScrollableDemo> {
       ),
     );
   }
-
   Future<String> _RrefreshPull() async {
     await Future.delayed(new Duration(seconds: 3));
     return "_RrefreshPull";

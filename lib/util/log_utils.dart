@@ -6,7 +6,7 @@ import 'package:courseflutter/common/common.dart';
 /// 输出Log工具类
 class Log{
 
-  static const String tag = 'DEER-LOG';
+  static const String tag = 'COURSELOG';
   
   static init() {
     LogUtil.init(isDebug:true);

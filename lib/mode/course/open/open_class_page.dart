@@ -1,6 +1,6 @@
 import 'package:common_utils/common_utils.dart';
-import 'package:courseflutter/mode/open/presenter/open_class_presenter.dart';
-import 'package:courseflutter/mode/open/provider/open_class_provider.dart';
+import 'package:courseflutter/mode/course/open/presenter/open_class_presenter.dart';
+import 'package:courseflutter/mode/course/open/provider/open_class_provider.dart';
 import 'package:courseflutter/mvp/base_page_state.dart';
 import 'package:courseflutter/res/colors.dart';
 import 'package:courseflutter/res/resources.dart';

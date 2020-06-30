@@ -1,10 +1,30 @@
 
 import 'package:common_utils/common_utils.dart';
+import 'package:courseflutter/util/theme_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
 
 class Utils {
+
+
   static String formatPrice(String price, {format: MoneyFormat.END_INTEGER}){
     return MoneyUtil.changeYWithUnit(NumUtil.getDoubleByValueStr(price), MoneyUnit.YUAN, format: format);
+  }
+
+  static KeyboardActionsConfig getKeyboardActionsConfig(BuildContext context, List<FocusNode> list) {
+    return KeyboardActionsConfig(
+      keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
+      keyboardBarColor: ThemeUtils.getKeyboardActionsColor(context),
+      nextFocus: true,
+      actions: List.generate(list.length, (i) => KeyboardAction(
+        focusNode: list[i],
+        closeWidget: const Padding(
+          padding: EdgeInsets.all(5.0),
+          child: Text('关闭'),
+        ),
+      )),
+    );
   }
 
 }

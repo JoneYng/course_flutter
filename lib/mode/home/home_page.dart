@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../course_router.dart';
+import '../course/course_router.dart';
 import 'home_provider.dart';
 import 'main_button.dart';
 

@@ -1,7 +1,8 @@
 
-import 'package:courseflutter/mode/video/video_class_page.dart';
+import 'package:courseflutter/mode/course/video/video_class_page.dart';
 import 'package:courseflutter/routers/router_init.dart';
 import 'package:fluro/fluro.dart';
+
 import 'open/open_class_page.dart';
 
 //课程路由
