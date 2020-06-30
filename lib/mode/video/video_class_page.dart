@@ -1,0 +1,225 @@
+import 'package:courseflutter/mode/video/presenter/video_class_presenter.dart';
+import 'package:courseflutter/mode/video/provider/video_provider.dart';
+import 'package:courseflutter/mvp/base_page_state.dart';
+import 'package:courseflutter/res/resources.dart';
+import 'package:courseflutter/mode/video/video_entity.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+class VideoClassPage extends StatefulWidget {
+  @override
+  VideoClassPageState createState() => VideoClassPageState();
+}
+
+class VideoClassPageState
+    extends BasePageState<VideoClassPage, VideoClassPresenter>
+    with
+        AutomaticKeepAliveClientMixin<VideoClassPage>,
+        SingleTickerProviderStateMixin {
+  VideoProvider _provider = VideoProvider();
+  VideoClassPresenter _videoClassPresenter = VideoClassPresenter();
+  List<VideoEntity> _sideoEntityList = [];
+
+  int _page = 1;
+  ScrollController _controller;
+  int _count = 20;
+  bool _isLoding = false;
+  bool _isRefreshing = false;
+  String loadingText = "加载中.....";
+
+  void setVideoList(List<VideoEntity> user) {
+    _provider.setVideoList(user);
+  }
+
+  @override
+  void initState() {
+    _controller = ScrollController();
+    _videoClassPresenter.getVideoList(_page, _count);
+//    _controller.addListener(() {
+//      int offset = _controller.position.pixels.toInt();
+//      print("滑动距离$offset");
+//      // 如果滑动到底部
+//      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+//        setState(() {
+//          _isLoding = true;
+//        });
+//      } else {
+//        setState(() {
+//          _isLoding = false;
+//        });
+//      }
+//    });
+  }
+
+  @override
+  void dispose() {
+    // 记得销毁对象
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<VideoProvider>(
+        create: (_) => _provider, child: _widget(_provider));
+  }
+
+  @override
+  createPresenter() {
+    return _videoClassPresenter;
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  Widget _widget(VideoProvider _provider) {
+    if (_provider.videoEntity != null) {
+      _sideoEntityList.addAll(_provider.videoEntity);
+    }
+    if (_sideoEntityList != null && _sideoEntityList.length > 0) {
+      return Scaffold(
+          body: new CustomScrollView(
+            primary: false,
+            controller: _controller,
+            //滑动效果，如阻尼效果等等
+            physics: const BouncingScrollPhysics(),
+
+            slivers: <Widget>[
+              getTitle(),
+              SliverGrid(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 250.0,
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 10.0,
+                  childAspectRatio: 1.2, //子控件宽高比
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return getVideoItem(_sideoEntityList[index], index);
+                  },
+                  childCount: _sideoEntityList.length,
+                ),
+              ),
+              new SliverToBoxAdapter(
+                child: new Visibility(
+                  child: new Container(
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: new Center(
+                      child: new Text(loadingText),
+                    ),
+                  ),
+                  visible: _isLoding,
+                ),
+              ),
+            ],
+          ),
+      );
+    } else {
+      return Scaffold(
+        body: new CustomScrollView(
+          //滑动效果，如阻尼效果等等
+          physics: const BouncingScrollPhysics(),
+          slivers: <Widget>[
+            getTitle(),
+          ],
+        ),
+      );
+    }
+  }
+
+  void _RrefreshPull() {
+    _page=1;
+    _count=10;
+    _sideoEntityList.clear();
+    _videoClassPresenter.getVideoList(_page, _count);
+  }
+
+//获取到插件与原生的交互通道
+  var jumpPlugin = const MethodChannel('com.kmf.jump/plugin');
+
+  Future<Null> _jumpToNative(VideoEntity videoEntity) async {
+    Map<String, String> map = {"polyId": videoEntity.poly_id};
+    String result = await jumpPlugin.invokeMethod('oneAct', map);
+    print(result);
+  }
+
+  ///获取视频课item组件
+  Widget getVideoItem(VideoEntity videoEntity, int positon) {
+    return GestureDetector(
+      onTap: () {
+        _jumpToNative(videoEntity);
+      },
+      child: Card(
+        child: Column(children: <Widget>[
+          Expanded(
+              child: Stack(
+            children: <Widget>[
+              Container(
+                //设置背景图片
+                decoration: new BoxDecoration(
+                  borderRadius: new BorderRadius.only(
+                      topLeft: new Radius.circular(5.0),
+                      topRight: new Radius.circular(5.0)),
+                  image: new DecorationImage(
+                    fit: BoxFit.fill,
+                    image: new NetworkImage(videoEntity.img_url),
+                  ),
+                ),
+              ),
+              Container(
+                child: Images.play,
+                padding: EdgeInsets.fromLTRB(5.0, 0, 5.0, 0),
+              )
+            ],
+            alignment: const FractionalOffset(0.5, 0.5),
+          )),
+          Container(
+            alignment: Alignment.center,
+            height: 40,
+            child: Text(
+              videoEntity.description,
+              maxLines: 2,
+              style: TextStyle(fontSize: 12),
+            ),
+          )
+        ]),
+      ),
+    );
+  }
+
+  /// 获取标题布局
+  Widget getTitle() {
+    return new SliverAppBar(
+      leading: GestureDetector(
+        child: Icon(
+          Icons.arrow_back,
+          color: Colors.black,
+        ),
+        onTap: () => Navigator.pop(context),
+      ),
+      //左侧按钮
+      elevation: 4,
+      //阴影的高度
+      forceElevated: true,
+      //是否显示阴影
+      backgroundColor: Colors.white,
+      iconTheme: IconThemeData(color: Colors.white, size: 25, opacity: 1),
+      primary: true,
+      // appbar是否显示在屏幕的最上面，为false是显示在最上面，为true就显示在状态栏的下面
+      titleSpacing: 16,
+      expandedHeight: 120.0,
+      pinned: true,
+      //是否固定导航栏，为true是固定，为false是不固定，往上滑，导航栏可以隐藏
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: false,
+        titlePadding:
+            const EdgeInsetsDirectional.only(start: 50.0, bottom: 12.0),
+        title: Text(
+          '专项视频课',
+          style: new TextStyle(fontSize: 20.0, color: Colors.black),
+        ),
+      ),
+    );
+  }
+}
