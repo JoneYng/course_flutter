@@ -1,3 +1,4 @@
+import 'package:courseflutter/mode/login/login_router.dart';
 import 'package:courseflutter/res/colors.dart';
 import 'package:courseflutter/routers/fluro_navigator.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class DrawerPerson extends StatelessWidget {
                     child: InkWell(
                       //在最外层包裹InkWell组件
                       onTap: () {
-                        print('登录被点击');
+                        NavigatorUtils.push(context, LoginRouter.personDetailPage);
                       },
                       child: Container(
                         margin: EdgeInsets.only(right: 15),

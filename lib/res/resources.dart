@@ -15,4 +15,14 @@ class Images {
   static const Widget qq = const LoadAssetImage('login/iocn_login_qq', height: 50.0, width: 50.0);
   static const Widget sina = const LoadAssetImage('login/iocn_login_sina', height: 50.0, width: 50.0);
 
+  //person
+  static const Widget password = const LoadAssetImage('person/image_account_password', height: 25.0, width: 25.0);
+  static const Widget headSet = const LoadAssetImage('person/image_head_set',format: "webp", height: 25.0, width: 25.0);
+  static const Widget accountSet = const LoadAssetImage('person/image_account_set', height: 25.0, width: 25.0);
+  static const Widget accountPhone = const LoadAssetImage('person/image_account_phone', height: 25.0, width: 25.0);
+
+  static const Widget accountWeibo = const LoadAssetImage('person/image_account_weibo',format: "webp", height: 25.0, width: 25.0);
+  static const Widget accountWeixin = const LoadAssetImage('person/image_account_weixin',format: "webp", height: 25.0, width: 25.0);
+  static const Widget accountQQ = const LoadAssetImage('person/image_account_qq',format: "webp", height: 25.0, width: 25.0);
+
 }

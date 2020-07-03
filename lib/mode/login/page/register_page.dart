@@ -82,10 +82,6 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Text(
-            '开启你的账号',
-            style: TextStyles.textBold26,
-          ),
           Gaps.vGap16,
           MyTextField(
             key: const Key('phone'),

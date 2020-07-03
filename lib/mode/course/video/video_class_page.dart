@@ -113,6 +113,7 @@ class VideoClassPageState
                     ),
                   ),
                   visible: _provider.isLoadMore,
+
                 ),
               ),
             ],
@@ -153,7 +154,7 @@ class VideoClassPageState
 
   Future<Null> _jumpToNative(VideoEntity videoEntity) async {
     print("polyId::"+ videoEntity.poly_id);
-    Map<String, String> map = {"polyId": videoEntity.poly_id};
+    Map<String, String> map = {"polyId": videoEntity.poly_id,"title": videoEntity.title};
     String result = await jumpPlugin.invokeMethod('oneAct', map);
     print(result);
   }

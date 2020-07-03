@@ -64,15 +64,6 @@ class _UpdatePasswordPageState extends State<UpdatePasswordPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              '重置登录密码',
-              style: TextStyles.textBold26,
-            ),
-            Gaps.vGap8,
-            Text(
-              '设置账号 15000000000',
-              style: Theme.of(context).textTheme.subtitle.copyWith(fontSize: Dimens.font_sp12),
-            ),
             Gaps.vGap16,
             Gaps.vGap16,
             MyTextField(
