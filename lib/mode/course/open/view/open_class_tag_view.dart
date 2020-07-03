@@ -30,10 +30,10 @@ class OpenClassTagView extends StatelessWidget {
 
   BoxDecoration getTag(String tag) {
     var messagePath = "";
-    var gre = "assets/images/bg_tag_replay_language.png";
-    var gamt = "assets/images/bg_tag_replay_listening.png";
-    var ielts = "assets/images/bg_tag_replay_reading.png";
-    var toefl = "assets/images/bg_tag_replay_writing.png";
+    var gre = "assets/images/openclass/bg_tag_replay_language.png";
+    var gamt = "assets/images/openclass/bg_tag_replay_listening.png";
+    var ielts = "assets/images/openclass/bg_tag_replay_reading.png";
+    var toefl = "assets/images/openclass/bg_tag_replay_writing.png";
 
     if (tag == "GRE") {
       messagePath = gre;

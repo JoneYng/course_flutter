@@ -70,7 +70,7 @@ public class JumpPlugin implements FlutterPlugin, MethodChannel.MethodCallHandle
             //解析参数
             String text = call.argument("polyId");
             //带参数跳转到指定Activity
-            Intent intent = new Intent(activity, OneActivity.class);
+            Intent intent = new Intent(activity, PolyPalyActivity.class);
             intent.putExtra("polyId", text);
             activity.startActivity(intent);
             //返回给flutter的参数

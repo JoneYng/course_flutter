@@ -15,6 +15,7 @@ import 'package:flustars/flustars.dart';
 
 import 'login/login_router.dart';
 
+///闪屏页面
 class SplashPage extends StatefulWidget {
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -51,7 +52,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Material(
       child: Image.asset(
-        ImageUtils.getImgPath('bg_app_start', format: 'png'),
+        ImageUtils.getImgPath('bg_app_start'),
         width: double.infinity,
         fit: BoxFit.fill,
         height: double.infinity,

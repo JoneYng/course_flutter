@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rlWaitTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivWaitTitleBack"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:padding="16dp"
+            android:src="@mipmap/ai_back" />
+
+        <TextView
+            android:id="@+id/tvWaitTitleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/ivWaitTitleBack"
+            android:singleLine="true"
+            android:text="课程"
+            android:textColor="#FF212121"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/viewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_center_player_height"
+        android:background="@color/top_text_color_black">
+
+        <!--<com.easefun.polyvsdk.video.PolyvVideoView-->
+            <!--android:id="@+id/polyv_video_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+        <com.kmf.polyv.player.PolyvPlayerVideoViewController
+            android:id="@+id/videoViewController"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.kmf.polyv.player.PolyvPlayerMediaController
+            android:id="@+id/polyvMediaController"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+</LinearLayout>

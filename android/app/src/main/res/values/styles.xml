@@ -5,5 +5,9 @@
              Flutter draws its first frame -->
 
         <item name="android:windowBackground">@drawable/launch_background</item>
+        <!--设置透明背景-->
+        <item name="android:windowIsTranslucent">true</item>
     </style>
+
+
 </resources>

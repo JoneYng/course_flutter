@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.easefun.polyvsdk.video.PolyvVideoView
+        android:id="@+id/polyv_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.kmf.polyv.player.PolyvPlayerLightView
+        android:id="@+id/polyv_player_light_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <com.kmf.polyv.player.PolyvPlayerVolumeView
+        android:id="@+id/polyv_player_volume_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <com.kmf.polyv.player.PolyvPlayerProgressView
+        android:id="@+id/polyv_player_progress_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <!-- 视频在加载过程中显示的进度条 -->
+    <ProgressBar
+        android:id="@+id/loading_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <com.easefun.polyvsdk.video.auxiliary.PolyvAuxiliaryVideoView
+        android:id="@+id/polyv_auxiliary_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- 广告片头在加载过程中显示的进度条 -->
+    <ProgressBar
+        android:id="@+id/auxiliary_loading_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <!-- vlms cover -->
+    <ImageView
+        android:id="@+id/iv_vlms_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+
+</RelativeLayout>

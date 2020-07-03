@@ -91,27 +91,17 @@ public class MobileStatePlugin implements FlutterPlugin, MethodChannel.MethodCal
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
-
         telephonyManager =  (TelephonyManager)activity.getSystemService(Context.TELEPHONY_SERVICE);
-
-
         if (call.method.equals("getPhoneNumber")) {
-
-
             int x = activity.checkSelfPermission(Manifest.permission.READ_PHONE_STATE);
             if(x != 0)
             {
-
                 ActivityCompat.requestPermissions(activity,
                         new String[]{Manifest.permission.READ_PHONE_STATE},
                         MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
-
-
             }else{
                 getNumber();
             }
-
-
             result.success("xxxxx");
 
         } else {

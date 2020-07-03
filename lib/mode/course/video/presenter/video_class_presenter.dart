@@ -29,11 +29,11 @@ class VideoClassPresenter extends BasePagePresenter<VideoClassPageState> {
         url: HttpApi.videos,
         queryParameters: queryParameters,
         onSuccess: (data) {
-          Log.d("$page======${data.total_page}");
           if(isRefresh){
             _sideoEntityList.clear();
           }
           _sideoEntityList.addAll(data.mVideoEntityList);
+          //是否是最后一页
           if(page >= data.total_page){
             view.setVideoList(_sideoEntityList,false);
           }else{

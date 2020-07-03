@@ -1,3 +1,4 @@
+include ':polyv-library'
 include ':app'
 
 def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()

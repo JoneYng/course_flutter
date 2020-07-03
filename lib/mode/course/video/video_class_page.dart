@@ -75,7 +75,6 @@ class VideoClassPageState
     if (_provider.videoEntity != null) {
       _sideoEntityList.clear();
       _sideoEntityList.addAll(_provider.videoEntity);
-      Log.d("_sideoEntityList=>${_sideoEntityList.length}");
     }
     if (_sideoEntityList != null && _sideoEntityList.length > 0) {
       return Scaffold(
@@ -153,6 +152,7 @@ class VideoClassPageState
   var jumpPlugin = const MethodChannel('com.kmf.jump/plugin');
 
   Future<Null> _jumpToNative(VideoEntity videoEntity) async {
+    print("polyId::"+ videoEntity.poly_id);
     Map<String, String> map = {"polyId": videoEntity.poly_id};
     String result = await jumpPlugin.invokeMethod('oneAct', map);
     print(result);

@@ -6,6 +6,7 @@ import 'package:courseflutter/res/resources.dart';
 import 'package:courseflutter/res/styles.dart';
 import 'package:courseflutter/routers/fluro_navigator.dart';
 import 'package:courseflutter/routers/routers.dart';
+import 'package:courseflutter/util/toast.dart';
 import 'package:courseflutter/util/utils.dart';
 import 'package:courseflutter/widgets/app_bar.dart';
 import 'package:courseflutter/widgets/my_button.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flustars/flustars.dart' as FlutterStars;
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:oktoast/oktoast.dart';
 
 import '../login_router.dart';
 import 'pwd_login_page.dart';
@@ -35,9 +37,11 @@ class _MainLoginPageState extends State<MainLoginPage>
     _tabController = TabController(length: tabs.length, vsync: this);
     _tabController
         .addListener(() => print("当前点击的是第${_tabController.index}个tab"));
+    //默认选中的第一个
+    _tabController.index = 1;
   }
 
- ///tab集合
+  ///tab集合
   final tabs = <Tab>[
     Tab(
       child: Text("手机验证码登录"),
@@ -60,48 +64,67 @@ class _MainLoginPageState extends State<MainLoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Column(children: <Widget>[
-          Container(
-              margin: EdgeInsets.only(left: 20, right: 20),
-              height: 80,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      "assets/images/icon_account_login_background.webp"),
-                ),
-              )),
-          Container(
-              alignment: Alignment.centerLeft,
-              child: TabBar(
-                controller: _tabController,
-                tabs: tabs,
-                isScrollable: true,
-                labelStyle: TextStyle(fontSize: 16),
-                unselectedLabelStyle: TextStyle(fontSize: 15),
-                indicatorColor: Colours.app_main,
-                unselectedLabelColor: Colors.grey,
-                labelColor: Colours.app_main,
-                indicatorSize: TabBarIndicatorSize.label,
-              )),
-          Expanded(
-              child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  color: Colors.white,
-                  child: TabBarView(
+            appBar: AppBar(),
+            body: Column(children: <Widget>[
+              Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  height: 80,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                          "assets/images/icon_account_login_background.webp"),
+                    ),
+                  )),
+              Container(
+                  alignment: Alignment.centerLeft,
+                  child: TabBar(
                     controller: _tabController,
-                    children: tabBarViews,
-                  ))),
-          Container(
-            alignment: Alignment.center,
-            height: 40,
-            child: Text(
-              "登录页面",
-              maxLines: 2,
-              style: TextStyle(fontSize: 12),
-            ),
-          )
-        ]));
+                    tabs: tabs,
+                    isScrollable: true,
+                    labelStyle: TextStyle(fontSize: 16),
+                    unselectedLabelStyle: TextStyle(fontSize: 15),
+                    indicatorColor: Colours.app_main,
+                    unselectedLabelColor: Colors.grey,
+                    labelColor: Colours.app_main,
+                    indicatorSize: TabBarIndicatorSize.label,
+                  )),
+              Expanded(
+                  child: Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      color: Colors.white,
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: tabBarViews,
+                      ))),
+              Container(
+                margin: EdgeInsets.only(bottom: 10, left: 10),
+                child: Row(
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        Toast.show("微信~");
+                      },
+                      child: Images.weChat,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Toast.show("QQ~");
+                      },
+                      child: new Container(
+                        margin: EdgeInsets.only(right: 10, left: 10),
+                        child: Images.qq,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Toast.show("新浪~");
+                      },
+                      child: Images.sina,
+                    ),
+                  ],
+                ),
+              )
+            ]));
   }
 }

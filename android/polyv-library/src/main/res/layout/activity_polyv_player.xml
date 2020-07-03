@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_center_player_height"
+        android:background="@color/top_text_color_black">
+
+        <com.kmf.polyv.player.PolyvPlayerVideoViewController
+            android:id="@+id/polyv_player_video_view_controller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.kmf.polyv.player.PolyvPlayerMediaController
+            android:id="@+id/polyv_player_media_controller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+</LinearLayout>

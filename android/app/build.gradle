@@ -68,11 +68,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
-    //保利威视
-//    implementation 'com.easefun.polyv:polyvPlayer:2.8.1'
-    //SDK核心包
-//    implementation 'com.easefun.polyv:polyvPlayerABI:1.8.0'
-//    //SDK核心包
-//    implementation 'com.easefun.polyv:polyvSub:2.8.1'
+    compile project(path: ':polyv-library')
+
 
 }

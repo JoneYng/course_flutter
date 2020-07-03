@@ -45,6 +45,8 @@ flutter:
     - assets/splash/
     - assets/data/
     - assets/images/
+    - assets/images/openclass/
+    - assets/images/login/
 
 
   fonts:
