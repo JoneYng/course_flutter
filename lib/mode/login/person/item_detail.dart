@@ -29,8 +29,9 @@ class ItemDetail extends StatelessWidget {
     return new Container(
       width: double.infinity,
       height: 50,
-      child: InkWell(
-        //在最外层包裹InkWell组件
+      child:  Material(
+        color: Colors.white,
+          child: InkWell(
         onTap: onTap,
         child: Container(
           margin: EdgeInsets.only(left: 20, right: 20),
@@ -38,7 +39,6 @@ class ItemDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     leftIcon,
                     Container(
@@ -52,7 +52,6 @@ class ItemDetail extends StatelessWidget {
               Visibility(
                 visible: isRight,
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
                         margin: EdgeInsets.only(right: 10),
@@ -67,7 +66,7 @@ class ItemDetail extends StatelessWidget {
                           Visibility(
                               visible: isRightImage,
                               child: CircleAvatar(
-                                backgroundImage: NetworkImage(rightImageUri),
+                                backgroundImage: getBackgroundImage(rightImageUri),
                               ))
                         ]),
                       ),
@@ -77,7 +76,15 @@ class ItemDetail extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      )),
     );
+  }
+
+  ImageProvider getBackgroundImage(String rightImageUri){
+    if(rightImageUri.contains("http")){
+      return NetworkImage(rightImageUri);
+    }else{
+      return AssetImage(rightImageUri);
+    }
   }
 }

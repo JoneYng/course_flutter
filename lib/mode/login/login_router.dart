@@ -1,5 +1,6 @@
 
 import 'package:courseflutter/mode/login/page/login_page_main.dart';
+import 'package:courseflutter/mode/login/page/update_username_page.dart';
 import 'package:courseflutter/mode/login/person/person_detail.dart';
 import 'package:courseflutter/routers/router_init.dart';
 import 'package:fluro/fluro.dart';
@@ -18,6 +19,7 @@ class LoginRouter implements IRouterProvider{
   static String resetPasswordPage = '/login/resetPassword';
   static String updatePasswordPage = '/login/updatePassword';
   static String personDetailPage = '/login/PersonDetailPage';
+  static String updateUserNamePage = '/login/updateUserName';
 
   @override
   void initRouter(Router router) {
@@ -27,5 +29,6 @@ class LoginRouter implements IRouterProvider{
     router.define(resetPasswordPage, handler: Handler(handlerFunc: (_, params) => ResetPasswordPage()));
     router.define(updatePasswordPage, handler: Handler(handlerFunc: (_, params) => UpdatePasswordPage()));
     router.define(personDetailPage, handler: Handler(handlerFunc: (_, params) => PersonDetailPage()));
+    router.define(updateUserNamePage, handler: Handler(handlerFunc: (_, params) => UpdateUserNamePage()));
   }
 }
