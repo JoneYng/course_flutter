@@ -3,7 +3,7 @@
 本项目为学习Flutter的练习项目（主要为UI练习）
 
 ## 部分页面效果如下:
-| ![](./picture/1.jpg)    |
+| ![Image text]](./picture/1.jpg)    |
 ## 实现内容
 * mvp模式
 * 使用provider 做状态管理
