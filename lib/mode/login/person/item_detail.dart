@@ -1,4 +1,5 @@
 import 'package:courseflutter/res/resources.dart';
+import 'package:courseflutter/util/theme_utils.dart';
 import 'package:flutter/material.dart';
 
 /// 主页按钮
@@ -26,11 +27,13 @@ class ItemDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = ThemeUtils.isDark(context);
+
     return new Container(
       width: double.infinity,
       height: 50,
       child:  Material(
-        color: Colors.white,
+        color: isDark ? Colours.dark_bg_color : Colours.bg_color,
           child: InkWell(
         onTap: onTap,
         child: Container(

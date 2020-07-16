@@ -28,7 +28,12 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    _initSplash();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await SpUtil.getInstance();
+      // 由于SpUtil未初始化，所以MaterialApp获取的为默认主题配置，这里同步一下。
+      Provider.of<ThemeProvider>(context, listen: false).syncTheme();
+      _initSplash();
+    });
   }
 
   @override

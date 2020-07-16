@@ -6,9 +6,6 @@ import 'package:image_picker/image_picker.dart';
 
 ///个人信息侧滑页面
 class DrawerPerson extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

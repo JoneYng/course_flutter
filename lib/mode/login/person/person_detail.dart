@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:courseflutter/mode/login/view/view_update_phone.dart';
+import 'package:courseflutter/mode/setting/widgets/exit_dialog.dart';
 import 'package:courseflutter/res/colors.dart';
 import 'package:courseflutter/res/resources.dart';
 import 'package:courseflutter/routers/fluro_navigator.dart';
@@ -23,15 +24,17 @@ class PersonDetailPage extends StatefulWidget {
 
 class _PersonDetailPageState extends State<PersonDetailPage> {
   File _image;
+
   //个人头像
-  String headImage="https://upload.jianshu.io/users/upload_avatars/2268884/df618e28-c6d0-43b6-a7e9-80a7da48d3db.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/300/format/webp";
+  String headImage =
+      "https://upload.jianshu.io/users/upload_avatars/2268884/df618e28-c6d0-43b6-a7e9-80a7da48d3db.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/300/format/webp";
 
   Future getImage(ImageSource source) async {
     var image = await ImagePicker.pickImage(source: source);
     setState(() {
       _image = image;
-      Log.d("zxzx==="+_image.path);
-      headImage=_image.path;
+      Log.d("zxzx===" + _image.path);
+      headImage = _image.path;
     });
   }
 
@@ -71,14 +74,17 @@ class _PersonDetailPageState extends State<PersonDetailPage> {
               leftIcon: Images.accountPhone,
               leftText: "手机",
               rightText: "176****7896",
-              onTap: () {showDialog<Null>(
-                  context: context, //BuildContext对象
-                  barrierDismissible: true,
-                  builder: (BuildContext context) {
-                    return  UpdatePhoneDialog( //调用对话框
-                      phone: '+86 17611167896',
-                    );
-                  });}),
+              onTap: () {
+                showDialog<Null>(
+                    context: context, //BuildContext对象
+                    barrierDismissible: true,
+                    builder: (BuildContext context) {
+                      return UpdatePhoneDialog(
+                        //调用对话框
+                        phone: '+86 17611167896',
+                      );
+                    });
+              }),
           Container(
             margin: EdgeInsets.all(20),
             child: Text(
@@ -119,17 +125,21 @@ class _PersonDetailPageState extends State<PersonDetailPage> {
           InkWell(
             borderRadius: new BorderRadius.circular(25.0),
             //在最外层包裹InkWell组件
+//            onTap: () {
+//              NavigatorUtils.push(context, LoginRouter.loginPage,
+//                  clearStack: true);
+//            },
             onTap: () {
-              NavigatorUtils.push(context, LoginRouter.loginPage,
-                  clearStack: true);
+              showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (_) => ExitDialog());
             },
             child: Container(
               height: 45,
               margin: EdgeInsets.all(20),
               padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
-                  border:
-                      Border.all(color: Colours.open_class_button, width: 1),
                   color: Colours.app_main,
                   borderRadius: BorderRadius.circular((25.0))),
               child: Center(

@@ -7,7 +7,7 @@ class UpdatePhoneDialog extends Dialog {
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
+    return  Material(
       //创建透明层
       type: MaterialType.transparency, //透明类型
       child: Stack(
@@ -28,7 +28,7 @@ class UpdatePhoneDialog extends Dialog {
       child: SizedBox(
         width: 240.0,
         height: 140.0,
-        child: new Container(
+        child:  Container(
           decoration: ShapeDecoration(
             color: Color(0xffffffff),
             shape: RoundedRectangleBorder(

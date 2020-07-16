@@ -1,8 +1,7 @@
 import 'package:courseflutter/mode/drawer/drawer_person.dart';
+import 'package:courseflutter/mode/setting/setting_router.dart';
 import 'package:courseflutter/res/colors.dart';
-import 'package:courseflutter/res/resources.dart';
 import 'package:courseflutter/routers/fluro_navigator.dart';
-import 'package:courseflutter/util/load_image.dart';
 import 'package:courseflutter/util/theme_utils.dart';
 import 'package:courseflutter/widgets/double_tap_back_exit_app.dart';
 import 'package:flutter/material.dart';
@@ -26,35 +25,46 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     bool isDark = ThemeUtils.isDark(context);
     return ChangeNotifierProvider<HomeProvider>(
       create: (_) => provider,
       child: DoubleTapBackExitApp(
-        child:  DefaultTabController(
+        child: DefaultTabController(
           length: 3,
           child: Scaffold(
             key: _scaffoldKey,
-            backgroundColor: Colors.grey[100],
+            backgroundColor: isDark ? Colours.dark_bg_color : Colours.bg_color,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor:
+                  isDark ? Colours.dark_bg_color : Colours.bg_color,
               leading: IconButton(
                 icon: Icon(Icons.menu),
-                color: Colors.black,
+                color: isDark ? Colours.bg_color: Colours.dark_bg_color,
                 tooltip: "Navigration",
                 onPressed: () => _scaffoldKey.currentState.openDrawer(),
               ),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.settings),
+                  color: isDark ? Colours.bg_color: Colours.dark_bg_color,
+                  onPressed: () {
+                    NavigatorUtils.push(context, SettingRouter.settingPage);
+                  },
+                )
+              ],
               elevation: 0.0,
             ),
             body: Container(
               width: double.infinity,
               height: double.infinity,
-              color: Colors.white,
+              color: isDark ? Colours.dark_bg_color : Colours.bg_color,
               child: Column(
                 children: <Widget>[
                   Container(
-                      margin: const EdgeInsets.only(left:15.0,top: 10),
+                      margin: const EdgeInsets.only(left: 15.0, top: 10),
                       width: double.infinity,
                       child: Text(
                         "考满分课程",
@@ -64,12 +74,18 @@ class _HomeState extends State<Home> {
                           fontWeight: FontWeight.w900,
                         ),
                       )),
-                  MainButton(text:"公开课",onTap:() {
-                    NavigatorUtils.push(context, CourseRouter.OpenClass);
-                  },),
-                  MainButton(text:"视频课",onTap:() {
-                    NavigatorUtils.push(context, CourseRouter.VideoClass);
-                  },)
+                  MainButton(
+                    text: "公开课",
+                    onTap: () {
+                      NavigatorUtils.push(context, CourseRouter.OpenClass);
+                    },
+                  ),
+                  MainButton(
+                    text: "视频课",
+                    onTap: () {
+                      NavigatorUtils.push(context, CourseRouter.VideoClass);
+                    },
+                  )
                 ],
               ),
             ),
@@ -80,6 +96,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-
 }

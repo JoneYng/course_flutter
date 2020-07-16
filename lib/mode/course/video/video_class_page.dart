@@ -166,19 +166,20 @@ class VideoClassPageState
         _jumpToNative(videoEntity);
       },
       child: Card(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),  //设置圆角
         child: Column(children: <Widget>[
           Expanded(
               child: Stack(
             children: <Widget>[
               Container(
                 //设置背景图片
-                decoration: new BoxDecoration(
-                  borderRadius: new BorderRadius.only(
-                      topLeft: new Radius.circular(5.0),
-                      topRight: new Radius.circular(5.0)),
-                  image: new DecorationImage(
+                decoration:  BoxDecoration(
+                  borderRadius:  BorderRadius.only(
+                      topLeft:  Radius.circular(10.0),
+                      topRight: Radius.circular(10.0)),
+                  image:  DecorationImage(
                     fit: BoxFit.fill,
-                    image: new NetworkImage(videoEntity.img_url),
+                    image:  NetworkImage(videoEntity.img_url),
                   ),
                 ),
               ),

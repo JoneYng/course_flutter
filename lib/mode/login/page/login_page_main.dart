@@ -1,24 +1,9 @@
-import 'package:courseflutter/common/common.dart';
 import 'package:courseflutter/mode/login/page/sms_login_page.dart';
 import 'package:courseflutter/res/colors.dart';
-import 'package:courseflutter/res/gaps.dart';
 import 'package:courseflutter/res/resources.dart';
-import 'package:courseflutter/res/styles.dart';
-import 'package:courseflutter/routers/fluro_navigator.dart';
-import 'package:courseflutter/routers/routers.dart';
 import 'package:courseflutter/util/toast.dart';
-import 'package:courseflutter/util/utils.dart';
-import 'package:courseflutter/widgets/app_bar.dart';
-import 'package:courseflutter/widgets/my_button.dart';
-import 'package:courseflutter/widgets/text_field.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flustars/flustars.dart' as FlutterStars;
-import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:oktoast/oktoast.dart';
 
-import '../login_router.dart';
 import 'pwd_login_page.dart';
 
 ///登录主页面
