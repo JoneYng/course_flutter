@@ -3,8 +3,8 @@
 本项目为学习Flutter的练习项目（主要为UI练习）
 
 ## 部分页面效果如下:
-| ![Image text]](./picture/1.jpg)    |
 <img src="picture/1.jpg"/>
+![ScreenShot](https://github.com/JoneYng/course_flutter/picture/1.jpg)
 ## 实现内容
 * mvp模式
 * 使用provider 做状态管理
