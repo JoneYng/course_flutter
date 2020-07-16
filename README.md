@@ -4,6 +4,7 @@
 
 ## 部分页面效果如下:
 | ![Image text]](./picture/1.jpg)    |
+<img src="picture/1.jpg"/>
 ## 实现内容
 * mvp模式
 * 使用provider 做状态管理
