@@ -2,9 +2,6 @@
 
 本项目为学习Flutter的练习项目（主要为UI练习）
 
-## 部分页面效果如下:
-<img src="picture/1.jpg"/>
-![ScreenShot](https://github.com/JoneYng/course_flutter/picture/1.jpg)
 ## 实现内容
 * mvp模式
 * 使用provider 做状态管理
@@ -12,10 +9,30 @@
 * 模块化路由管理
 * 使用Sliver 系列组件实现复杂滚动效果
 ## 注意事项
-* 保利威视视频播放目前仅支持Android
-## Getting Started
+-  保利威视视频播放目前仅支持Android
+- `debug`模式下会有部分卡顿现象，这属于正常现象。良好的体验需要打`release` 包。
+    iOS可以执行命令`flutter build ios` 以创建`release`版本。
+    Android可以执行命令`flutter build apk` 以创建`release`版本。
 
-This project is a starting point for a Flutter application.
+## 使用到的三方库
+| 库                         | 功能             |
+| -------------------------- | --------------- |
+| [dio](https://github.com/flutterchina/dio)                            | **网络库**       |
+| [provider](https://github.com/rrousselGit/provider)                   | **状态管理**     |
+| [cached_network_image](https://github.com/renefloor/flutter_cached_network_image)       | **图片加载**       |
+| [fluro](https://github.com/theyakka/fluro)                            | **路由管理**     |
+| [flutter_oktoast](https://github.com/OpenFlutter/flutter_oktoast)     | **Toast**        |
+| [common_utils](https://github.com/Sky24n/common_utils)                | **Dart 常用工具类库**     |
+| [flustars](https://github.com/Sky24n/flustars)                        | **Flutter 常用工具类库**       |
+| [rxdart](https://github.com/ReactiveX/rxdart)                         | **Dart的响应式扩展** |
+| [webview_flutter](https://github.com/flutter/plugins/tree/master/packages/webview_flutter)    | **WebView插件**       |
+| [keyboard_actions](https://github.com/diegoveloper/flutter_keyboard_actions)                  | **处理键盘事件**       |
+| [date_utils](https://github.com/apptreesoftware/date_utils)           | **常用的日期工具类** |
+| [sprintf](https://github.com/Naddiseo/dart-sprintf)                   | **格式化String**   |
+
+
+** 感谢Flutter Deer 开源 **
+
 
 A few resources to get you started if this is your first Flutter project:
 
