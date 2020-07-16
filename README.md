@@ -3,6 +3,12 @@
 A new Flutter application.
 
 
+# 实现内容
+* mvp模式
+* 使用provider 做状态管理
+* 下拉刷新 + 上拉加载更多
+* 模块化路由管理
+* 使用Sliver 系列组件实现复杂滚动效果
 
 ## Getting Started
 
