@@ -2,6 +2,7 @@
 import 'package:courseflutter/mode/course/course_router.dart';
 import 'package:courseflutter/mode/home/home_page.dart';
 import 'package:courseflutter/mode/login/login_router.dart';
+import 'package:courseflutter/mode/setting/setting_router.dart';
 import 'package:courseflutter/routers/router_init.dart';
 import 'package:courseflutter/widgets/webview_page.dart';
 import 'package:fluro/fluro.dart';
@@ -39,6 +40,7 @@ class Routes {
     /// 各自路由由各自模块管理，统一在此添加初始化
     _listRouter.add(CourseRouter());
     _listRouter.add(LoginRouter());
+    _listRouter.add(SettingRouter());
 
     /// 初始化路由
     _listRouter.forEach((routerProvider) {

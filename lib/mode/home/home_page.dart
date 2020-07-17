@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
                       margin: const EdgeInsets.only(left: 15.0, top: 10),
                       width: double.infinity,
                       child: Text(
-                        "考满分课程",
+                        "课程",
                         textAlign: TextAlign.left,
                         style: new TextStyle(
                           fontSize: 22.0,

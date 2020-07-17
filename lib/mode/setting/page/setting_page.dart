@@ -53,10 +53,10 @@ class _SettingPageState extends State<SettingPage> {
             content: themeMode,
             onTap: () => NavigatorUtils.push(context, SettingRouter.themePage)
           ),
-          ClickItem(
-            title: '检查更新',
-            onTap: () => _showUpdateDialog()
-          ),
+//          ClickItem(
+//            title: '检查更新',
+//            onTap: () => _showUpdateDialog()
+//          ),
           ClickItem(
             title: '关于我们',
             onTap: () => NavigatorUtils.push(context, SettingRouter.aboutPage)

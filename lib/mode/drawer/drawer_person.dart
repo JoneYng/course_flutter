@@ -1,6 +1,7 @@
 import 'package:courseflutter/mode/login/login_router.dart';
 import 'package:courseflutter/res/colors.dart';
 import 'package:courseflutter/routers/fluro_navigator.dart';
+import 'package:courseflutter/util/theme_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -8,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 class DrawerPerson extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    bool isDark = ThemeUtils.isDark(context);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -70,7 +71,7 @@ class DrawerPerson extends StatelessWidget {
             ),
             leading: Icon(
               Icons.description,
-              color: Colors.black12,
+              color: isDark ? Colours.dark_button_text : Colours.text_gray_c,
               size: 22.0,
             ),
             onTap: () => Navigator.pop(context),
@@ -82,7 +83,7 @@ class DrawerPerson extends StatelessWidget {
             ),
             leading: Icon(
               Icons.access_alarms,
-              color: Colors.black12,
+              color: isDark ? Colours.dark_button_text : Colours.text_gray_c,
               size: 22.0,
             ),
             onTap: () => Navigator.pop(context),
@@ -94,11 +95,11 @@ class DrawerPerson extends StatelessWidget {
             ),
             leading: Icon(
               Icons.people,
-              color: Colors.black12,
+              color: isDark ? Colours.dark_button_text : Colours.text_gray_c,
               size: 22.0,
             ),
             onTap: () => NavigatorUtils.goWebViewPage(
-                context, "隐私条款", "https://hd.kmf.com/term/privacy"),
+                context, "隐私条款", "https://www.baidu.com/"),
           ),
           ListTile(
             title: Text(
@@ -107,7 +108,7 @@ class DrawerPerson extends StatelessWidget {
             ),
             leading: Icon(
               Icons.message,
-              color: Colors.black12,
+              color: isDark ? Colours.dark_button_text : Colours.text_gray_c,
               size: 22.0,
             ),
             onTap: () => Navigator.pop(context),

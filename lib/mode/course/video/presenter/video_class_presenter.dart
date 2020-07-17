@@ -1,5 +1,4 @@
 import 'package:courseflutter/common/common.dart';
-import 'package:courseflutter/util/log_utils.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:courseflutter/mvp/base_page_presenter.dart';

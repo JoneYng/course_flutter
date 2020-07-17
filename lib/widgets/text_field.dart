@@ -28,14 +28,20 @@ class MyTextField extends StatefulWidget {
     this.config,
     this.keyName
   }): super(key: key);
-
+  /// 输入控制器
   final TextEditingController controller;
+  /// 最大长度
   final int maxLength;
+  /// 自动获取焦点
   final bool autoFocus;
+  /// 文字输入Type
   final TextInputType keyboardType;
+  /// 默认提示文字
   final String hintText;
   final FocusNode focusNode;
+  /// 是否输入密码
   final bool isInputPwd;
+  /// 获取验证码
   final Future<bool> Function() getVCode;
   final KeyboardActionsConfig config;
   /// 用于集成测试寻找widget
@@ -46,13 +52,17 @@ class MyTextField extends StatefulWidget {
 }
 
 class _MyTextFieldState extends State<MyTextField> {
+  /// 是否显示密码
   bool _isShowPwd = false;
+  /// 是否显示删除
   bool _isShowDelete;
+  /// 是否点击发送验证码
   bool _isClick = true;
   /// 倒计时秒数
-  final int second = 30;
+  final int second = 60;
   /// 当前秒数
   int s;
+  ///定时器
   StreamSubscription _subscription;
 
   @override
@@ -76,6 +86,7 @@ class _MyTextFieldState extends State<MyTextField> {
     super.dispose();
   }
 
+  /// 获取验证码
   Future _getVCode() async {
     bool isSuccess = await widget.getVCode();
     if (isSuccess != null && isSuccess) {
@@ -83,6 +94,7 @@ class _MyTextFieldState extends State<MyTextField> {
         s = second;
         _isClick = false;
       });
+      ///定时器
       _subscription = Observable.periodic(Duration(seconds: 1), (i) => i).take(second).listen((i) {
         setState(() {
           s = second - i - 1;
@@ -111,9 +123,10 @@ class _MyTextFieldState extends State<MyTextField> {
           controller: widget.controller,
           textInputAction: TextInputAction.done,
           keyboardType: widget.keyboardType,
-          // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
+          /// 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
           inputFormatters: (widget.keyboardType == TextInputType.number || widget.keyboardType == TextInputType.phone) ? 
           [WhitelistingTextInputFormatter(RegExp('[0-9]'))] : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
+          ///输入框下划线
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
               hintText: widget.hintText,
@@ -139,7 +152,7 @@ class _MyTextFieldState extends State<MyTextField> {
               label: '清空',
               hint: '清空输入框',
               child: GestureDetector(
-                child: LoadAssetImage('login/qyg_shop_icon_delete',
+                child: LoadAssetImage('login/icon_login_delete',
                   key: Key('${widget.keyName}_delete'),
                   width: 18.0,
                   height: 40.0,
@@ -153,7 +166,7 @@ class _MyTextFieldState extends State<MyTextField> {
               hint: '密码是否可见',
               child: GestureDetector(
                 child: LoadAssetImage(
-                  _isShowPwd ? 'login/qyg_shop_icon_display' : 'login/qyg_shop_icon_hide',
+                  _isShowPwd ? 'login/icon_login_display' : 'login/icon_login_hide',
                   key: Key('${widget.keyName}_showPwd'),
                   width: 18.0,
                   height: 40.0,

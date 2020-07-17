@@ -3,7 +3,7 @@ import 'package:courseflutter/mode/course/video/provider/video_provider.dart';
 import 'package:courseflutter/mode/course/video/video_entity.dart';
 import 'package:courseflutter/mvp/base_page_state.dart';
 import 'package:courseflutter/res/resources.dart';
-import 'package:courseflutter/util/log_utils.dart';
+import 'package:courseflutter/util/theme_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ class VideoClassPageState
   bool _isRefreshing = false;
   bool isLoding = true;
   String loadingText = "加载中.....";
-
+  bool isDark=false;
   void setVideoList(List<VideoEntity> user, bool isLoadMore) {
     _provider.setVideoList(user, isLoadMore);
     isLoding = isLoadMore;
@@ -59,6 +59,7 @@ class VideoClassPageState
 
   @override
   Widget build(BuildContext context) {
+    isDark = ThemeUtils.isDark(context);
     return ChangeNotifierProvider<VideoProvider>(
         create: (_) => _provider, child: _widget(_provider));
   }
@@ -210,7 +211,7 @@ class VideoClassPageState
       leading: GestureDetector(
         child: Icon(
           Icons.arrow_back,
-          color: Colors.black,
+          color: isDark ? Colours.bg_color : Colours.dark_bg_color,
         ),
         onTap: () => Navigator.pop(context),
       ),
@@ -219,7 +220,7 @@ class VideoClassPageState
       //阴影的高度
       forceElevated: true,
       //是否显示阴影
-      backgroundColor: Colors.white,
+      backgroundColor: isDark ? Colours.dark_bg_color : Colours.bg_color,
       iconTheme: IconThemeData(color: Colors.white, size: 25, opacity: 1),
       primary: true,
       // appbar是否显示在屏幕的最上面，为false是显示在最上面，为true就显示在状态栏的下面
@@ -233,7 +234,7 @@ class VideoClassPageState
             const EdgeInsetsDirectional.only(start: 50.0, bottom: 12.0),
         title: Text(
           '专项视频课',
-          style: new TextStyle(fontSize: 20.0, color: Colors.black),
+          style: new TextStyle(fontSize: 20.0, color: isDark ? Colours.dark_text : Colours.text),
         ),
       ),
     );

@@ -1,11 +1,9 @@
 
 import 'package:courseflutter/common/common.dart';
 import 'package:courseflutter/res/gaps.dart';
-import 'package:courseflutter/res/styles.dart';
 import 'package:courseflutter/routers/fluro_navigator.dart';
 import 'package:courseflutter/routers/routers.dart';
 import 'package:courseflutter/util/utils.dart';
-import 'package:courseflutter/widgets/app_bar.dart';
 import 'package:courseflutter/widgets/my_button.dart';
 import 'package:courseflutter/widgets/text_field.dart';
 import 'package:flutter/foundation.dart';
@@ -36,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     //监听输入改变  
     _nameController.addListener(_verify);
     _passwordController.addListener(_verify);
-    _nameController.text = FlutterStars.SpUtil.getString(Constant.phone);
+//    _nameController.text = FlutterStars.SpUtil.getString(Constant.phone);
   }
 
   void _verify() {

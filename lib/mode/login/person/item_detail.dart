@@ -33,7 +33,7 @@ class ItemDetail extends StatelessWidget {
       width: double.infinity,
       height: 50,
       child:  Material(
-        color: isDark ? Colours.dark_bg_color : Colours.bg_color,
+        color: isDark ? Colours.dark_bg_color : Colours.material_bg,
           child: InkWell(
         onTap: onTap,
         child: Container(

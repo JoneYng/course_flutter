@@ -40,7 +40,6 @@ class _AboutPageState extends State<AboutPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 2s定时器
       _countdownTimer = Timer.periodic(Duration(seconds: 2), (timer) {
-        // https://www.jianshu.com/p/e4106b829bff
         if (!mounted) {
           return;
         }

@@ -49,6 +49,7 @@ flutter:
     - assets/images/openclass/
     - assets/images/login/
     - assets/images/person/
+    - assets/images/state/
 
 
   fonts:

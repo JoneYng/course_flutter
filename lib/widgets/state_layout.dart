@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 /// design/9暂无状态页面/index.html#artboard3
 class StateLayout extends StatefulWidget {
-  
   const StateLayout({
     Key key,
     @required this.type,

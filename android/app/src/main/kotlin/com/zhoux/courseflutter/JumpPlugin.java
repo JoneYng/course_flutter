@@ -68,10 +68,12 @@ public class JumpPlugin implements FlutterPlugin, MethodChannel.MethodCallHandle
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         if (call.method.equals("oneAct")) {
             //解析参数
-            String text = call.argument("polyId");
+            String polyId = call.argument("polyId");
+            String title = call.argument("title");
             //带参数跳转到指定Activity
             Intent intent = new Intent(activity, PolyPalyActivity.class);
-            intent.putExtra("polyId", text);
+            intent.putExtra("polyId", polyId);
+            intent.putExtra("title", title);
             activity.startActivity(intent);
             //返回给flutter的参数
             result.success("success");

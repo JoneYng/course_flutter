@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:courseflutter/mode/splash_page.dart';
 import 'package:courseflutter/provider/theme_provider.dart';
 import 'package:courseflutter/routers/application.dart';
@@ -6,18 +8,24 @@ import 'package:courseflutter/util/log_utils.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(Apps());
+  // 透明状态栏
+  if (Platform.isAndroid) {
+    SystemUiOverlayStyle systemUiOverlayStyle =
+    SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
 }
 
 class Apps extends StatelessWidget {
   final Widget home;
   Apps({this.home}) {
     Log.init();
-    SpUtil.getInstance();
     final router = Router();
     Routes.configureRoutes(router);
     Application.router = router;
@@ -38,9 +46,11 @@ class Apps extends StatelessWidget {
                   darkTheme: provider.getTheme(isDarkMode: true),
                   home: home ?? SplashPage(),
                   onGenerateRoute: Application.router.generator,
+
               );
             },
           ),
+
         ),
         /// Toast 配置
         backgroundColor: Colors.black54,

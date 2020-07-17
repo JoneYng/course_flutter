@@ -5,6 +5,7 @@ import 'package:courseflutter/mvp/base_page_state.dart';
 import 'package:courseflutter/res/colors.dart';
 import 'package:courseflutter/res/resources.dart';
 import 'package:courseflutter/util/load_image.dart';
+import 'package:courseflutter/util/theme_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,7 @@ import 'view/open_class_tag_view.dart';
 
 /// 公开课页面
 class OpenClassPage extends StatefulWidget {
+
   @override
   OpenClassPageState createState() => OpenClassPageState();
 }
@@ -25,6 +27,7 @@ class OpenClassPageState
         SingleTickerProviderStateMixin {
   OpenClassProvider provider = OpenClassProvider();
   OpenClassPresenter mOpenClassPresenter = OpenClassPresenter();
+  bool isDark=false;
 
   void setOpenClassDateList(List<OpenClassDateEntity> openClassDateEntity) {
     provider.setOpenClassList(openClassDateEntity);
@@ -36,6 +39,7 @@ class OpenClassPageState
 
   @override
   Widget build(BuildContext context) {
+    isDark = ThemeUtils.isDark(context);
     return ChangeNotifierProvider<OpenClassProvider>(
         create: (_) => provider,
         child: DefaultTabController(
@@ -45,13 +49,13 @@ class OpenClassPageState
                 leading: GestureDetector(
                   child: Icon(
                     Icons.arrow_back,
-                    color: Colors.black,
+                    color:isDark ? Colours.bg_color : Colours.dark_bg_color,
                   ),
                   onTap: () => Navigator.pop(context),
                 ),
                 title:
-                    Text("公开课", style: TextStyle(color: Colours.dark_bg_gray)),
-                backgroundColor: Colors.white,
+                    Text("公开课", style: TextStyle(color: isDark ? Colours.dark_text : Colours.text)),
+                backgroundColor: isDark ? Colours.dark_bg_color : Colours.bg_color,
                 bottom: TabBar(
                   onTap: (int index) {
                     setState(() {});

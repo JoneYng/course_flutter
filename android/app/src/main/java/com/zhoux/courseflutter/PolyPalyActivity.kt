@@ -12,12 +12,9 @@ import com.easefun.polyvsdk.video.listener.IPolyvOnPreparedListener2
 import com.kmf.polyv.R
 import com.kmf.polyv.activity.PolyvPlayerActivity
 import com.kmf.polyv.app.PolyvManager
-import com.kmf.polyv.player.PolyvPlayerMediaController
-import com.kmf.polyv.player.PolyvPlayerVideoViewController
 import com.kmf.polyv.player.PolyvPlayerVideoViewController.PlayMode
 import com.kmf.polyv.utils.PolyvScreenUtils
 import kotlinx.android.synthetic.main.activity_polyv_player.*
-import kotlinx.android.synthetic.main.activity_polyv_player.view.*
 
 class PolyPalyActivity : FragmentActivity() {
     /**
@@ -30,10 +27,12 @@ class PolyPalyActivity : FragmentActivity() {
 
     private var fastForwardPos = 0
     private var isPlay = false
+    var title=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_polyv_player)
         val polyId = intent.getStringExtra("polyId")
+         title = intent.getStringExtra("title")
         val mPolyvManager = PolyvManager()
         mPolyvManager.initPolyvCilent(this)
         findIdAndNew()
@@ -66,6 +65,7 @@ class PolyPalyActivity : FragmentActivity() {
         ivWaitTitleBack.setOnClickListener {
             finish()
         }
+        tvWaitTitleName.text=title
     }
 
     private fun initView() {
