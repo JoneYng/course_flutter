@@ -1,10 +1,12 @@
 import 'package:courseflutter/mode/drawer/drawer_person.dart';
 import 'package:courseflutter/mode/setting/setting_router.dart';
+import 'package:courseflutter/mode/shop/shop_router.dart';
 import 'package:courseflutter/res/colors.dart';
 import 'package:courseflutter/routers/fluro_navigator.dart';
 import 'package:courseflutter/util/theme_utils.dart';
 import 'package:courseflutter/widgets/double_tap_back_exit_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:provider/provider.dart';
 
@@ -29,6 +31,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     bool isDark = ThemeUtils.isDark(context);
+    ScreenUtil.instance = ScreenUtil(width: 750,height: 1334)..init(context);
     return ChangeNotifierProvider<HomeProvider>(
       create: (_) => provider,
       child: DoubleTapBackExitApp(
@@ -84,6 +87,12 @@ class _HomeState extends State<Home> {
                     text: "视频课",
                     onTap: () {
                       NavigatorUtils.push(context, CourseRouter.VideoClass);
+                    },
+                  ),
+                  MainButton(
+                    text: "商城",
+                    onTap: () {
+                      NavigatorUtils.push(context, ShopRouter.shopPage);
                     },
                   )
                 ],

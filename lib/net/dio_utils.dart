@@ -1,8 +1,6 @@
-
 import 'dart:convert';
 
 import 'package:courseflutter/common/common.dart';
-import 'package:courseflutter/common/entity_factory.dart';
 import 'package:courseflutter/util/log_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -12,7 +10,6 @@ import 'error_handle.dart';
 import 'http_api.dart';
 import 'intercept.dart';
 
-/// @weilu https://github.com/simplezhli
 class DioUtils {
 
   static final DioUtils _singleton = DioUtils._internal();
@@ -38,10 +35,11 @@ class DioUtils {
         // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
         return true;
       },
-      baseUrl:HttpApi.base,
+      baseUrl: HttpApi.base,
 //      contentType: ContentType('application', 'x-www-form-urlencoded', charset: 'utf-8'),
     );
     _dio = Dio(options);
+
     ///Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
 //    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
 //        (HttpClient client) {
@@ -54,33 +52,41 @@ class DioUtils {
 //    };
     /// 统一添加身份验证请求头
     _dio.interceptors.add(AuthInterceptor());
+
     /// 刷新Token
     _dio.interceptors.add(TokenInterceptor());
+
     /// 打印Log(生产模式去除)
     if (!Constant.inProduction) {
       _dio.interceptors.add(LoggingInterceptor());
     }
+
     /// 适配数据(根据自己的数据结构，可自行选择添加)
     _dio.interceptors.add(AdapterInterceptor());
   }
 
   // 数据返回格式统一，统一处理异常
-  Future<BaseEntity<T>> _request<T>(String method, String url, {
-    dynamic data, Map<String, dynamic> queryParameters,
-    CancelToken cancelToken, Options options
-  }) async {
-    var response = await _dio.request(url, data: data, queryParameters: queryParameters, options: _checkOptions(method, options), cancelToken: cancelToken);
+  Future<BaseEntity<T>> _request<T>(String method, String url,
+      {dynamic data,
+      Map<String, dynamic> queryParameters,
+      CancelToken cancelToken,
+      Options options}) async {
+    var response = await _dio.request(url,
+        data: data,
+        queryParameters: queryParameters,
+        options: _checkOptions(method, options),
+        cancelToken: cancelToken);
     try {
       /// 集成测试无法使用 isolate
-      Map<String, dynamic> _map = Constant.isTest ? parseData(response.data.toString()) : await compute(parseData, response.data.toString());
+      Map<String, dynamic> _map = Constant.isTest
+          ? parseData(response.data.toString())
+          : await compute(parseData, response.data.toString());
       return BaseEntity.fromJson(_map);
-    } catch(e) {
+    } catch (e) {
       print(e);
       return BaseEntity(ExceptionHandle.parse_error, '数据解析错误', null);
     }
   }
-
-
 
   Options _checkOptions(method, options) {
     if (options == null) {
@@ -90,20 +96,22 @@ class DioUtils {
     return options;
   }
 
-
-  Future requestNetwork<T>(Method method, String url, {
-        Function(T t) onSuccess, 
-        Function(List<T> list) onSuccessList, 
-        Function(int code, String msg) onError,
-        dynamic params, Map<String, dynamic> queryParameters, 
-        CancelToken cancelToken, Options options, bool isList : false
-  }) async {
+  Future requestNetwork<T>(Method method, String url,
+      {Function(T t) onSuccess,
+      Function(List<T> list) onSuccessList,
+      Function(int code, String msg) onError,
+      dynamic params,
+      Map<String, dynamic> queryParameters,
+      CancelToken cancelToken,
+      Options options,
+      bool isList: false}) async {
     String m = _getRequestMethod(method);
     return await _request<T>(m, url,
-        data: params,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken).then((BaseEntity<T> result) {
+            data: params,
+            queryParameters: queryParameters,
+            options: options,
+            cancelToken: cancelToken)
+        .then((BaseEntity<T> result) {
       if (result.status == 200) {
         if (isList) {
           if (onSuccessList != null) {
@@ -111,7 +119,7 @@ class DioUtils {
           }
         } else {
           if (onSuccess != null) {
-              onSuccess(result.result);
+            onSuccess(result.result);
           }
         }
       } else {
@@ -125,15 +133,21 @@ class DioUtils {
   }
 
   /// 统一处理(onSuccess返回T对象，onSuccessList返回List<T>)
-  asyncRequestNetwork<T>(Method method, String url, {
-    Function(T t) onSuccess, 
-    Function(List<T> list) onSuccessList, 
-    Function(int code, String msg) onError,
-    dynamic params, Map<String, dynamic> queryParameters, 
-    CancelToken cancelToken, Options options, bool isList : false
-  }) {
+  asyncRequestNetwork<T>(Method method, String url,
+      {Function(T t) onSuccess,
+      Function(List<T> list) onSuccessList,
+      Function(int code, String msg) onError,
+      dynamic params,
+      Map<String, dynamic> queryParameters,
+      CancelToken cancelToken,
+      Options options,
+      bool isList: false}) {
     String m = _getRequestMethod(method);
-    Observable.fromFuture(_request<T>(m, url, data: params, queryParameters: queryParameters, options: options, cancelToken: cancelToken))
+    Observable.fromFuture(_request<T>(m, url,
+            data: params,
+            queryParameters: queryParameters,
+            options: options,
+            cancelToken: cancelToken))
         .asBroadcastStream()
         .listen((result) {
       if (result.status == 200) {
@@ -156,7 +170,6 @@ class DioUtils {
     });
   }
 
-
   _cancelLogPrint(dynamic e, String url) {
     if (e is DioError && CancelToken.isCancel(e)) {
       Log.e('取消请求接口： $url');
@@ -176,7 +189,7 @@ class DioUtils {
 
   String _getRequestMethod(Method method) {
     String m;
-    switch(method) {
+    switch (method) {
       case Method.get:
         m = 'GET';
         break;
@@ -204,11 +217,4 @@ Map<String, dynamic> parseData(String data) {
   return json.decode(data);
 }
 
-enum Method {
-  get,
-  post,
-  put,
-  patch,
-  delete,
-  head
-}
+enum Method { get, post, put, patch, delete, head }

@@ -3,6 +3,7 @@ import 'package:courseflutter/mode/course/course_router.dart';
 import 'package:courseflutter/mode/home/home_page.dart';
 import 'package:courseflutter/mode/login/login_router.dart';
 import 'package:courseflutter/mode/setting/setting_router.dart';
+import 'package:courseflutter/mode/shop/shop_router.dart';
 import 'package:courseflutter/routers/router_init.dart';
 import 'package:courseflutter/widgets/webview_page.dart';
 import 'package:fluro/fluro.dart';
@@ -41,6 +42,7 @@ class Routes {
     _listRouter.add(CourseRouter());
     _listRouter.add(LoginRouter());
     _listRouter.add(SettingRouter());
+    _listRouter.add(ShopRouter());
 
     /// 初始化路由
     _listRouter.forEach((routerProvider) {

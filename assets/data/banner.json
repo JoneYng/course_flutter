@@ -1,0 +1,38 @@
+[
+  {
+    "img": "https://oimagea2.ydstatic.com/image?id=2713797321391962558&product=xue",
+    "orientation": 1,
+    "tagId": 1228,
+    "opType": 0,
+    "opId": 159400,
+    "title": "【升初三】物理+数学提分方法课",
+    "type": "course",
+    "tagName": "初三",
+    "url": "https://kewap.youdao.com/m/course/detail/63351?outVendor=course_tag_default",
+    "purchased": false,
+    "courseSaleStartTime": 1594180800000,
+    "guid": "29ed925f-6785-42de-b438-c93b5d6f96cb",
+    "validTime": 1595297278000,
+    "startTime": 1596106800000,
+    "outVendor": "course_tag_default",
+    "endTime": 1596207600000,
+    "id": "63351",
+    "courseId": 63351
+  },
+  {
+    "img": "https://oimagec4.ydstatic.com/image?id=2206197019602032596&product=xue",
+    "orientation": 1,
+    "tagId": 432,
+    "opType": 0,
+    "opId": 157180,
+    "title": "给到-青春纪念手册专题-初中",
+    "type": "topic",
+    "tagName": "初中",
+    "url": "https://c.youdao.com/xue/activity/czhcwh2020.html?outVendor=course_tag_default",
+    "guid": "a3a4c166-5cd1-4edf-8665-c5f506425b17",
+    "validTime": 1594960714000,
+    "outVendor": "course_tag_default",
+    "endTime": 1596175306000,
+    "id": "e392bfd92b054c13a80fe8e014836743"
+  }
+]
