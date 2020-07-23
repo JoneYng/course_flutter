@@ -80,7 +80,7 @@ class VideoClassPageState
     if (_sideoEntityList != null && _sideoEntityList.length > 0) {
       return Scaffold(
         body: RefreshIndicator(
-          child: new CustomScrollView(
+          child:  CustomScrollView(
             primary: false,
             controller: _controller,
             physics: ScrollPhysics(),
@@ -106,11 +106,11 @@ class VideoClassPageState
                 ),
               ),
               new SliverToBoxAdapter(
-                child: new Visibility(
-                  child: new Container(
+                child:  Visibility(
+                  child:  Container(
                     padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: new Center(
-                      child: new Text(loadingText),
+                    child:  Center(
+                      child:  Text(loadingText),
                     ),
                   ),
                   visible: _provider.isLoadMore,
@@ -130,7 +130,7 @@ class VideoClassPageState
       );
     } else {
       return Scaffold(
-        body: new CustomScrollView(
+        body:  CustomScrollView(
           //滑动效果，如阻尼效果等等
           physics: const BouncingScrollPhysics(),
           slivers: <Widget>[

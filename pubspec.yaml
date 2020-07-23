@@ -54,6 +54,7 @@ flutter:
     - assets/images/login/
     - assets/images/person/
     - assets/images/state/
+    - assets/images/shop/
 
 
   fonts:

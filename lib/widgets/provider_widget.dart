@@ -19,7 +19,8 @@ class _ProviderWidgetState<T extends ChangeNotifier>
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>(
       create: (_) => widget.model,
-      child: Consumer<T>(
+      child:
+      Consumer<T>(
         builder: widget.builder,
         child: widget.childe,
       ),
