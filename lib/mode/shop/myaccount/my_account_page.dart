@@ -45,7 +45,6 @@ class _MyAccountState extends State<MyAccountPage> {
           margin: EdgeInsets.all(10),
           height: 100,
           child: Card(
-            color: Colors.white,
             elevation: 5.0, //设置阴影
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15.0))), //设置圆角
@@ -61,21 +60,21 @@ class _MyAccountState extends State<MyAccountPage> {
                     margin: EdgeInsets.only(left: 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[Images.accountSet, Text("我的订单")],
+                      children: <Widget>[Images.ic_mine_address, Text("收货地址")],
                     )),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[Images.accountSet, Text("我的订单")],
+                  children: <Widget>[Images.ic_mine_download, Text("缓存中心")],
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[Images.accountSet, Text("我的订单")],
+                  children: <Widget>[Images.ic_mine_key_course, Text("我的重点")],
                 ),
                 Container(
                     margin: EdgeInsets.only(right: 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[Images.accountSet, Text("我的订单")],
+                      children: <Widget>[Images.ic_mine_order, Text("我的订单")],
                     ))
               ],
             ),

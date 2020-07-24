@@ -25,4 +25,10 @@ class Images {
   static const Widget accountWeixin = const LoadAssetImage('person/image_account_weixin',format: "webp", height: 25.0, width: 25.0);
   static const Widget accountQQ = const LoadAssetImage('person/image_account_qq',format: "webp", height: 25.0, width: 25.0);
 
+
+  static const Widget ic_mine_address = const LoadAssetImage('shop/ic_mine_address',format: "png", height: 25.0, width: 25.0);
+  static const Widget ic_mine_download = const LoadAssetImage('shop/ic_mine_download',format: "png", height: 25.0, width: 25.0);
+  static const Widget ic_mine_key_course = const LoadAssetImage('shop/ic_mine_key_course',format: "png", height: 25.0, width: 25.0);
+  static const Widget ic_mine_order = const LoadAssetImage('shop/ic_mine_order',format: "png", height: 25.0, width: 25.0);
+
 }
