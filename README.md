@@ -33,6 +33,8 @@
 | [keyboard_actions](https://github.com/diegoveloper/flutter_keyboard_actions)                  | **处理键盘事件**       |
 | [date_utils](https://github.com/apptreesoftware/date_utils)           | **常用的日期工具类** |
 | [sprintf](https://github.com/Naddiseo/dart-sprintf)                   | **格式化String**   |
+| [flutter_swiper](https://github.com/best-flutter/flutter_swiper)      | **轮播图控件**   |
+| [flutter_screenutil](https://github.com/OpenFlutter/flutter_screenutil)                   | **屏幕适配**   |
 
 
 ## Thanks For
