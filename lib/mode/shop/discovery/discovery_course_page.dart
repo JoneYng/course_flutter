@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:courseflutter/mode/course/open/view/open_class_button_view.dart';
 import 'package:courseflutter/mode/shop/discovery/presenter/discovery_course_presenter.dart';
 import 'package:courseflutter/mode/shop/discovery/provider/discovery_course_provider.dart';
 import 'package:courseflutter/mode/shop/discovery/view/find_course_title.dart';
@@ -38,7 +37,7 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      Gaps.vGap50,
+      Gaps.vGap40,
       FindCourseTitleView(
         leftOnTap: () => {},
         centerOnTap: () => {},
@@ -47,14 +46,14 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
       ProviderWidget<DiscoveryCourseProvider>(
         model: _provider,
         builder: (context, model, childe) {
-          if (model.list.length > 0) {
+          if (model.listCourseBanner.length > 0) {
             return Expanded(
               child: MediaQuery.removePadding(
                 removeTop: true,
                 context: context,
                 child: ListView(
                   children: <Widget>[
-                    getBanner(model.list),
+                    getBanner(model.listCourseBanner),
                     Container(
                       padding: EdgeInsets.all(10),
                       child: Text(
@@ -67,9 +66,9 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return buildItem(model.list2[index]);
+                        return buildItem(model.listCourseTeacher[index]);
                       },
-                      itemCount: model.list2.length,
+                      itemCount: model.listCourseTeacher.length,
                     ),
                     Container(
                       padding: EdgeInsets.all(10),
@@ -83,9 +82,9 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return buildGoodCourseItem(model.list3[index]);
+                        return buildGoodCourseItem(model.listCourseDetail[index]);
                       },
-                      itemCount: model.list3.length,
+                      itemCount: model.listCourseDetail.length,
                     ),
                   ],
                 ),

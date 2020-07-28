@@ -5,13 +5,13 @@ class CourseButton extends StatelessWidget {
 
   final Color color;
   final String text;
-  final Object cb;
-  CourseButton({Key key,this.color=Colors.black,this.text='按钮',this.cb=null}) : super(key: key);
+  final Function onTap;
+  CourseButton({Key key,this.color=Colors.black,this.text='按钮',this.onTap=null}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:this.cb,
+      onTap:this.onTap,
       child: Container(
         margin: EdgeInsets.all(5),
         padding: EdgeInsets.all(5),

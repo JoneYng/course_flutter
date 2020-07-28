@@ -7,19 +7,23 @@ import 'package:flutter/material.dart';
 import '../bean/banner_bean.dart';
 
 class DiscoveryCourseProvider extends ChangeNotifier {
+  List<CourseBanner> _listCourseBanner = [];
+  List<CourseTeacher> _listCourseTeacher = [];
+  List<CourseDetail> _listCourseDetail = [];
 
-  List<CourseBanner> _list=[];
-  List<CourseTeacher> _list2=[];
-  List<CourseDetail> _list3=[];
+  List<CourseBanner> get listCourseBanner => _listCourseBanner;
 
-  List<CourseBanner> get list => _list;
-  List<CourseTeacher> get list2 => _list2;
-  List<CourseDetail> get list3 => _list3;
+  List<CourseTeacher> get listCourseTeacher => _listCourseTeacher;
 
-  void setBanner(List<CourseBanner> list,List<CourseTeacher> list2,List<CourseDetail> list3) {
-    _list= list;
-    _list2= list2;
-    _list3= list3;
+  List<CourseDetail> get listCourseDetail => _listCourseDetail;
+
+  void setBanner(
+      List<CourseBanner> listCourseBanner,
+      List<CourseTeacher> listCourseTeacher,
+      List<CourseDetail> listCourseDetail) {
+    _listCourseBanner = listCourseBanner;
+    _listCourseTeacher = listCourseTeacher;
+    _listCourseDetail = listCourseDetail;
     notifyListeners();
   }
 }

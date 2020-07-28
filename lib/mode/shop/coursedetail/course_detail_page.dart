@@ -59,6 +59,7 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                 context: context,
                 child: RefreshIndicator(
                     child: NotificationListener(
+                      // ignore: missing_return
                       onNotification: (scrollNotification) {
                         //监听滚动
                         // 滚动变化 才监听 && 第0个元素发生滚动得时候才监听
@@ -70,64 +71,7 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                       child: Stack(
                         children: <Widget>[
                           _listView,
-                          Positioned(
-                            width: ScreenUtil.getInstance().setWidth(750),
-                            height: ScreenUtil.getInstance().setHeight(120),
-                            bottom: 0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                      top: BorderSide(
-                                          color: Colors.black12, width: 1)),
-                                  color: Colors.white),
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(
-                                      flex: 1,
-                                      child: Container(
-                                        padding: EdgeInsets.only(
-                                            top: ScreenUtil.getInstance()
-                                                .setHeight(10)),
-                                        width: ScreenUtil.getInstance()
-                                            .setWidth(750),
-                                        height: ScreenUtil.getInstance()
-                                            .setHeight(88),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: <Widget>[
-                                            Icon(
-                                              Icons.shopping_cart,
-                                              size: 25,
-                                            ),
-                                            Text('选课单')
-                                          ],
-                                        ),
-                                      )),
-                                  Expanded(
-                                    flex: 1,
-                                    child: CourseButton(
-                                      color: Colors.orange,
-                                      text: "加入选课单",
-                                      cb: () {
-                                        print('加入选课单');
-                                      },
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: CourseButton(
-                                      color: Colors.red,
-                                      text: "立即购买",
-                                      cb: () {
-                                        print('立即购买');
-                                      },
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
+                          getBottomWidget()
                         ],
                       ),
                     ),
@@ -149,7 +93,9 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
   // 列表
   Widget get _listView {
     return ListView(
-      padding: EdgeInsets.only(bottom: ScreenUtil.getInstance().setHeight(100),),
+      padding: EdgeInsets.only(
+        bottom: ScreenUtil.getInstance().setHeight(100),
+      ),
       children: <Widget>[
         Image.network(
             "https://oimagec4.ydstatic.com/image?id=2206197019602032596&product=xue"),
@@ -228,6 +174,7 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
     );
   }
 
+  ///滚动监听
   _onScroll(offset) {
     print(offset);
     double alpha = offset / kAppBar_Scroll_Offset;
@@ -240,8 +187,98 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
     setState(() {
       appBarAlpha = alpha;
     });
-
     print("首页appbar 滚动透明度:$appBarAlpha");
+  }
+
+  ///详情页底部布局
+  Widget getBottomWidget(){
+   return Positioned(
+      width: ScreenUtil.getInstance().setWidth(750),
+      height: ScreenUtil.getInstance().setHeight(120),
+      bottom: 0,
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(
+                    color: Colors.black12, width: 1)),
+            color: Colors.white),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+                flex: 1,
+                child: Container(
+                  padding: EdgeInsets.only(
+                      top: ScreenUtil.getInstance()
+                          .setHeight(10)),
+                  width: ScreenUtil.getInstance()
+                      .setWidth(750),
+                  height: ScreenUtil.getInstance()
+                      .setHeight(88),
+                  child: Row(
+                      crossAxisAlignment:
+                      CrossAxisAlignment.center,
+                      mainAxisAlignment:
+                      MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                            margin: EdgeInsets.only(
+                                right: 10),
+                            child: Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .center,
+                              mainAxisAlignment:
+                              MainAxisAlignment.start,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.headset,
+                                  size: 25,
+                                ),
+                                Text('客服')
+                              ],
+                            )),
+                        Container(
+                            margin: EdgeInsets.only(
+                                left: 10),
+                            child:  Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.center,
+                              mainAxisAlignment:
+                              MainAxisAlignment.start,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.shopping_cart,
+                                  size: 25,
+                                ),
+                                Text('选课单')
+                              ],
+                            ))
+                      ]),
+                )),
+            Expanded(
+              flex: 1,
+              child: CourseButton(
+                color: Colors.orange,
+                text: "加入选课单",
+                onTap: () {
+                  print('加入选课单');
+                },
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: CourseButton(
+                color: Colors.red,
+                text: "立即购买",
+                onTap: () {
+                  print('立即购买');
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   // appbar

@@ -41,14 +41,17 @@ class _HomeState extends State<Home> {
             key: _scaffoldKey,
             backgroundColor: isDark ? Colours.dark_bg_color : Colours.bg_color,
             appBar: AppBar(
+              //背景颜色
               backgroundColor:
                   isDark ? Colours.dark_bg_color : Colours.bg_color,
+              //左侧按钮
               leading: IconButton(
                 icon: Icon(Icons.menu),
                 color: isDark ? Colours.bg_color: Colours.dark_bg_color,
                 tooltip: "Navigration",
                 onPressed: () => _scaffoldKey.currentState.openDrawer(),
               ),
+              //右侧按钮
               actions: <Widget>[
                 IconButton(
                   icon: Icon(Icons.settings),
