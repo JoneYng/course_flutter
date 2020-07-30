@@ -1,5 +1,9 @@
+import 'package:courseflutter/mode/shop/discovery/view/shop_car.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../shop_car_provider.dart';
 
 ///发现课程标题
 class FindCourseTitleView extends StatelessWidget {
@@ -55,40 +59,16 @@ class FindCourseTitleView extends StatelessWidget {
                             Text(
                               "9元名师课",
                               style:
-                                  TextStyle(fontSize: 12, color: Colors.grey),
+                              TextStyle(fontSize: 12, color: Colors.grey),
                             )
                           ]))),
               flex: 8,
             ),
             Expanded(
-              child: InkWell(
-                  onTap: rightOnTap,
-                  child: Container(
-                    height: 30,
-                      alignment: Alignment.centerRight,
-                      child: Stack(
-                        children: <Widget>[
-                          Icon(
-                            Icons.shopping_cart,
-                            size: 26,
-                          ),
-                          Container(
-                              height: 15,
-                              width: 15,
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(left: 15, bottom: 10),
-                              decoration: new BoxDecoration(
-                                color: Colors.red, // 底色
-                                borderRadius:
-                                    new BorderRadius.circular((10.0)), // 圆角度
-                              ),
-                              child: Text(
-                                "3",
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.white),
-                              )),
-                        ],
-                      ))),
+              child: Consumer<ShopCarProvider>(
+                  builder: (context, model, childe) {
+                    return ShopCarView(count: model.listShopItem.length, onTap: rightOnTap);
+                  }),
               flex: 1,
             ),
           ],

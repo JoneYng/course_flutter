@@ -8,11 +8,12 @@ import 'package:courseflutter/routers/routers.dart';
 import 'package:courseflutter/util/log_utils.dart';
 import 'package:courseflutter/widgets/provider_widget.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+
+import 'mode/shop/shop_car_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +48,7 @@ class Apps extends StatelessWidget {
         child: MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (_) => CurrentIndexProvider()),
+            ChangeNotifierProvider(create: (_) => ShopCarProvider()),
           ],
           child: ProviderWidget<ThemeProvider>(
             model: ThemeProvider(),

@@ -4,7 +4,9 @@
 ## 实现模块
 * ListView 列表切换 --公开课模块
 * GridView 列表下拉刷新，翻页加载 --视频课模块
-* 商城实战  商城模块（未完成）
+* 商城实战  仿网易精选课模块（未完成）
+ - 首页列表
+ - 购物车逻辑
 
 ## 实现内容
 * mvp模式
@@ -35,6 +37,7 @@
 | [sprintf](https://github.com/Naddiseo/dart-sprintf)                   | **格式化String**   |
 | [flutter_swiper](https://github.com/best-flutter/flutter_swiper)      | **轮播图控件**   |
 | [flutter_screenutil](https://github.com/OpenFlutter/flutter_screenutil)                   | **屏幕适配**   |
+| [sqflite](https://github.com/tekartik/sqflite)                   | **sqflite**   |
 
 
 ## Thanks For

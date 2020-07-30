@@ -31,4 +31,8 @@ class Images {
   static const Widget ic_mine_key_course = const LoadAssetImage('shop/ic_mine_key_course',format: "png", height: 25.0, width: 25.0);
   static const Widget ic_mine_order = const LoadAssetImage('shop/ic_mine_order',format: "png", height: 25.0, width: 25.0);
 
+
+  static const Widget ic_shop_select = const LoadAssetImage('shop/ic_shop_select',format: "png", height: 20.0, width: 20.0);
+  static const Widget ic_shop_unselect = const LoadAssetImage('shop/ic_shop_unselect',format: "png", height: 20.0, width: 20.0);
+
 }

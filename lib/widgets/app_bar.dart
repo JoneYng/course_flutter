@@ -15,8 +15,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
     this.title: '',
     this.centerTitle: '',
     this.actionName: '',
-    this.backImg: 'assets/images/ic_back_black.png',
     this.onPressed,
+    this.backImg: 'assets/images/ic_back_black.png',
     this.isBack: true
   }): super(key: key);
 
@@ -25,7 +25,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
   final String centerTitle;
   final String backImg;
   final String actionName;
-  final VoidCallback onPressed;
+  final Function onPressed;
   final bool isBack;
 
   @override
@@ -89,7 +89,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
                     child: Text(actionName, key: const Key('actionName')),
                     textColor: _overlayStyle == SystemUiOverlayStyle.light ? Colours.dark_text : Colours.text,
                     highlightColor: Colors.transparent,
-                    onPressed: onPressed,
+                    onPressed: this.onPressed,
                   ),
                 ),
               ),

@@ -17,6 +17,8 @@ class DiscoveryCourseProvider extends ChangeNotifier {
 
   List<CourseDetail> get listCourseDetail => _listCourseDetail;
 
+
+
   void setBanner(
       List<CourseBanner> listCourseBanner,
       List<CourseTeacher> listCourseTeacher,
@@ -26,4 +28,7 @@ class DiscoveryCourseProvider extends ChangeNotifier {
     _listCourseDetail = listCourseDetail;
     notifyListeners();
   }
+
+
+
 }

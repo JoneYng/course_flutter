@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:courseflutter/mode/shop/discovery/presenter/discovery_course_presenter.dart';
 import 'package:courseflutter/mode/shop/discovery/provider/discovery_course_provider.dart';
 import 'package:courseflutter/mode/shop/discovery/view/find_course_title.dart';
+import 'package:courseflutter/mode/shop/discovery/view/good_course_item.dart';
 import 'package:courseflutter/mvp/base_page_state.dart';
 import 'package:courseflutter/res/gaps.dart';
 import 'package:courseflutter/res/resources.dart';
@@ -29,9 +30,11 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
   DiscoveryCourseProvider _provider = DiscoveryCourseProvider();
   ShopPresenter _shopPresenter = new ShopPresenter();
 
-  void setBannerList(List<CourseBanner> list, List<CourseTeacher> list2,
-      List<CourseDetail> list3) {
-    _provider.setBanner(list, list2, list3);
+  void setBannerList(
+      List<CourseBanner> listCourseBanner,
+      List<CourseTeacher> listCourseTeacher,
+      List<CourseDetail> listCourseDetail) {
+    _provider.setBanner(listCourseBanner, listCourseTeacher, listCourseDetail);
   }
 
   @override
@@ -41,7 +44,8 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
       FindCourseTitleView(
         leftOnTap: () => {},
         centerOnTap: () => {},
-        rightOnTap: () => {},
+        rightOnTap: () =>
+            {NavigatorUtils.push(context, ShopRouter.courseShopCar)},
       ),
       ProviderWidget<DiscoveryCourseProvider>(
         model: _provider,
@@ -82,7 +86,8 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return buildGoodCourseItem(model.listCourseDetail[index]);
+                        return buildGoodCourseItem(
+                            model.listCourseDetail[index]);
                       },
                       itemCount: model.listCourseDetail.length,
                     ),
@@ -99,42 +104,21 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
   }
 
   //ListView的Item
-  Widget buildTeachItem(TeacherList mTeacherList) {
-    return Container(
-        margin: EdgeInsets.only(right: 5),
-        child: Column(
-          children: <Widget>[
-            Container(
-                width: 30,
-                height: 30,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(mTeacherList.imgUrl),
-                )),
-            Text(
-              mTeacherList.name,
-              style: TextStyle(fontSize: 12),
-            )
-          ],
-        ));
-  }
-
-  //ListView的Item
   Widget buildItem(CourseTeacher mCourseTeacher) {
     return Container(
       height: 120,
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.all(10),
       child: InkWell(
-          onTap: () =>
-          {
-            NavigatorUtils.goWebViewPage(
-                context, mCourseTeacher.title, mCourseTeacher.url)
-          },
+          onTap: () => {
+                NavigatorUtils.goWebViewPage(
+                    context, mCourseTeacher.title, mCourseTeacher.url)
+              },
           child: Row(
             children: <Widget>[
               LoadImage(mCourseTeacher.img, height: 120.0, width: 80.0),
               ConstrainedBox(
-                // 可以设置宽度和高度的最大最小值
+                  // 可以设置宽度和高度的最大最小值
                   constraints: BoxConstraints(
                     minHeight: 120.0,
                     maxWidth: 250.0,
@@ -158,7 +142,7 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
                             Container(
-                                alignment:Alignment.center,
+                                alignment: Alignment.center,
                                 padding: EdgeInsets.all(2),
                                 //边框设置
                                 decoration: new BoxDecoration(
@@ -194,91 +178,8 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
 
   //ListView的Item
   Widget buildGoodCourseItem(CourseDetail mCourseDetail) {
-    return Container(
-      height: 140,
-      alignment: Alignment.centerLeft,
-      padding: EdgeInsets.all(10),
-      child: InkWell(
-          onTap: () =>
-          {
-            NavigatorUtils.navigateTo(context, ShopRouter.courseDetail, params: {
-            'json':json.encode(mCourseDetail.toJson()).toString(),
-          },).then((result) {
-            // 通过pop回传的值，顶部返回则不会通过此处传值
-          })
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
-                      margin: EdgeInsets.only(right: 10),
-                      padding: EdgeInsets.all(2),
-                      //边框设置
-                      decoration: new BoxDecoration(
-                        color: Colors.blueGrey,
-                        //设置四周圆角 角度
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(0.0),
-                            topRight: Radius.circular(5.0),
-                            bottomLeft: Radius.circular(5.0),
-                            bottomRight: Radius.circular(5.0)),
-                        //设置四周边框
-                        border:
-                        new Border.all(width: 1, color: Colors.blueGrey),
-                      ),
-                      child: Text(
-                        mCourseDetail.categoryName,
-                        style: TextStyle(fontSize: 12, color: Colors.white),
-                      )),
-                  Expanded(
-                      child: Text(
-                        mCourseDetail.courseTitle,
-                        maxLines: 1,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.none),
-                        overflow: TextOverflow.ellipsis,
-                      ))
-                ],
-              ),
-              Text(
-                  "开课时间:${mCourseDetail.courseTime} ${mCourseDetail
-                      .lessonNum}课时",
-                  style: TextStyle(fontSize: 12)),
-              Container(
-                margin: EdgeInsets.only(bottom: 10),
-                height: 50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Expanded(
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return buildTeachItem(
-                                mCourseDetail.teacherList[index]);
-                          },
-                          itemCount: mCourseDetail.teacherList.length,
-                        )),
-                    Text(
-                      "￥${mCourseDetail.courseSalePrice}",
-                      style: TextStyle(color: Colors.orange, fontSize: 18),
-                    )
-                  ],
-                ),
-              ),
-              Divider(
-                height: 0.5,
-                color: Colors.black12,
-              ),
-            ],
-          )
-      )
-      ,
+    return GoodCourseIteamView(
+      mCourseDetail: mCourseDetail,
     );
   }
 
@@ -319,13 +220,13 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
         },
         // 点击事件 onTap
         pagination: SwiperPagination(
-          // 分页指示器
+            // 分页指示器
             alignment: Alignment.bottomCenter,
             // 位置 Alignment.bottomCenter 底部中间
             margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
             // 距离调整
             builder: DotSwiperPaginationBuilder(
-              // 指示器构建
+                // 指示器构建
                 space: ScreenUtil().setWidth(5),
                 // 点之间的间隔
                 size: ScreenUtil().setWidth(10),

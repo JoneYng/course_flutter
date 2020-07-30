@@ -31,6 +31,7 @@ class CourseDetail {
   bool needAddress;
   String courseTime;
   int status;
+  bool isSelect=false;//是否选中
 
   CourseDetail(
       {this.lessonNum,
@@ -60,6 +61,7 @@ class CourseDetail {
         this.renew,
         this.needAddress,
         this.courseTime,
+        this.isSelect,
         this.status});
 
   CourseDetail.fromJson(Map<String, dynamic> json) {
@@ -101,6 +103,7 @@ class CourseDetail {
     needAddress = json['needAddress'];
     courseTime = json['courseTime'];
     status = json['status'];
+    isSelect = json['isSelect']==null? false:json['isSelect'];
   }
 
   Map<String, dynamic> toJson() {
@@ -140,6 +143,7 @@ class CourseDetail {
     data['needAddress'] = this.needAddress;
     data['courseTime'] = this.courseTime;
     data['status'] = this.status;
+    data['isSelect'] = this.isSelect;
     return data;
   }
 }

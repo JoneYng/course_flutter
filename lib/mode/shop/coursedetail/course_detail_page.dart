@@ -1,10 +1,16 @@
 import 'package:courseflutter/mode/shop/discovery/bean/course_detail_bean.dart';
 import 'package:courseflutter/mode/shop/discovery/view/course_button.dart';
+import 'package:courseflutter/mode/shop/discovery/view/shop_car.dart';
 import 'package:courseflutter/routers/fluro_navigator.dart';
 import 'package:courseflutter/widgets/app_bar.dart';
 import 'package:courseflutter/widgets/loading_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oktoast/oktoast.dart';
+import 'package:provider/provider.dart';
+
+import '../shop_car_provider.dart';
+import '../shop_router.dart';
 
 // 定义一个常量
 const kAppBar_Scroll_Offset = 100;
@@ -69,16 +75,13 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                         }
                       },
                       child: Stack(
-                        children: <Widget>[
-                          _listView,
-                          getBottomWidget()
-                        ],
+                        children: <Widget>[_listView, getBottomWidget()],
                       ),
                     ),
                     onRefresh: _handleRefresh),
               ),
               // appBar
-              _appBar,
+              getAppBar(appBarAlpha),
             ],
           ),
           isLoading: _loading),
@@ -191,16 +194,14 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
   }
 
   ///详情页底部布局
-  Widget getBottomWidget(){
-   return Positioned(
+  Widget getBottomWidget() {
+    return Positioned(
       width: ScreenUtil.getInstance().setWidth(750),
       height: ScreenUtil.getInstance().setHeight(120),
       bottom: 0,
       child: Container(
         decoration: BoxDecoration(
-            border: Border(
-                top: BorderSide(
-                    color: Colors.black12, width: 1)),
+            border: Border(top: BorderSide(color: Colors.black12, width: 1)),
             color: Colors.white),
         child: Row(
           children: <Widget>[
@@ -208,27 +209,18 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                 flex: 1,
                 child: Container(
                   padding: EdgeInsets.only(
-                      top: ScreenUtil.getInstance()
-                          .setHeight(10)),
-                  width: ScreenUtil.getInstance()
-                      .setWidth(750),
-                  height: ScreenUtil.getInstance()
-                      .setHeight(88),
+                      top: ScreenUtil.getInstance().setHeight(10)),
+                  width: ScreenUtil.getInstance().setWidth(750),
+                  height: ScreenUtil.getInstance().setHeight(88),
                   child: Row(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.center,
-                      mainAxisAlignment:
-                      MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                            margin: EdgeInsets.only(
-                                right: 10),
+                            margin: EdgeInsets.only(right: 10),
                             child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .center,
-                              mainAxisAlignment:
-                              MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Icon(
                                   Icons.headset,
@@ -237,22 +229,24 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                                 Text('客服')
                               ],
                             )),
-                        Container(
-                            margin: EdgeInsets.only(
-                                left: 10),
-                            child:  Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.center,
-                              mainAxisAlignment:
-                              MainAxisAlignment.start,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.shopping_cart,
-                                  size: 25,
-                                ),
-                                Text('选课单')
-                              ],
-                            ))
+                        Consumer<ShopCarProvider>(
+                          builder:(context, model, childe) {
+                            return Container(
+                                margin: EdgeInsets.only(left: 10),
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    ShopCarView(count: model.listShopItem.length, onTap:(){
+                                      NavigatorUtils.push(context, ShopRouter.courseShopCar);
+                                    }),
+                                    Text('选课单')
+                                  ],
+                                ));
+                          }
+                          ,
+                        ),
                       ]),
                 )),
             Expanded(
@@ -261,6 +255,10 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                 color: Colors.orange,
                 text: "加入选课单",
                 onTap: () {
+                  bool isSuccess= Provider.of<ShopCarProvider>(context,listen: false).addShop(mCourseDetail);
+                  if(!isSuccess){
+                    showToast("课程已经在选课单中了~");
+                  }
                   print('加入选课单');
                 },
               ),
@@ -282,7 +280,7 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
   }
 
   // appbar
-  Widget get _appBar {
+  Widget getAppBar(appBarAlpha) {
     return Column(
       children: <Widget>[
         Container(
@@ -317,27 +315,7 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                           height: 30,
                           alignment: Alignment.center,
                           margin: EdgeInsets.only(left: 10, right: 10),
-                          decoration: new BoxDecoration(
-                            color: Colors.black12, // 底色
-                            borderRadius:
-                                new BorderRadius.circular((5.0)), // 圆角度
-                          ),
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(right: 5),
-                                  child: Icon(Icons.search,
-                                      size: 15, color: Colors.grey),
-                                ),
-                                Text(
-                                  "9元名师课",
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.grey),
-                                )
-                              ])),
+                          child: Text("")),
                       flex: 8,
                     ),
                     Expanded(
