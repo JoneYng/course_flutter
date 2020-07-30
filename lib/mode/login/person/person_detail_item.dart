@@ -2,8 +2,8 @@ import 'package:courseflutter/res/resources.dart';
 import 'package:courseflutter/util/theme_utils.dart';
 import 'package:flutter/material.dart';
 
-/// 主页按钮
-class ItemDetail extends StatelessWidget {
+/// 信息设置页Item
+class PersonDetailItem extends StatelessWidget {
   final Function onTap; //点击事件
   final String leftText; //左侧显示文字
   final String rightText; //右侧显示文字
@@ -13,7 +13,7 @@ class ItemDetail extends StatelessWidget {
   final String rightImageUri; //右侧图片地址
   final bool isRightText; //是否显示右侧文字
 
-  const ItemDetail({
+  const PersonDetailItem({
     Key key,
     this.leftText = "",
     this.leftIcon,
@@ -29,7 +29,7 @@ class ItemDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isDark = ThemeUtils.isDark(context);
 
-    return new Container(
+    return  Container(
       width: double.infinity,
       height: 50,
       child:  Material(
@@ -52,6 +52,7 @@ class ItemDetail extends StatelessWidget {
                       ),
                     )
                   ]),
+              //Visibility是控制子组件隐藏/可见的组件
               Visibility(
                 visible: isRight,
                 child: Row(

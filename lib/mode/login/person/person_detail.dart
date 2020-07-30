@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../login_router.dart';
-import 'item_detail.dart';
+import 'person_detail_item.dart';
 
 ///个人信息详情页
 class PersonDetailPage extends StatefulWidget {
@@ -53,7 +53,7 @@ class _PersonDetailPageState extends State<PersonDetailPage> {
               style: TextStyle(color: Colours.app_main),
             ),
           ),
-          ItemDetail(
+          PersonDetailItem(
             leftIcon: Images.accountHeadSet,
             leftText: "头像",
             rightImageUri: headImage,
@@ -63,14 +63,14 @@ class _PersonDetailPageState extends State<PersonDetailPage> {
               _showSelectionDialog(context);
             },
           ),
-          ItemDetail(
+          PersonDetailItem(
               leftIcon: Images.accountSet,
               leftText: "用户名",
               rightText: "大队辅导员",
               onTap: () {
                 NavigatorUtils.push(context, LoginRouter.updateUserNamePage);
               }),
-          ItemDetail(
+          PersonDetailItem(
               leftIcon: Images.accountPhone,
               leftText: "手机",
               rightText: "176****7896",
@@ -92,17 +92,17 @@ class _PersonDetailPageState extends State<PersonDetailPage> {
               style: TextStyle(color: Colours.app_main),
             ),
           ),
-          ItemDetail(
+          PersonDetailItem(
               leftIcon: Images.accountWeibo,
               leftText: "新浪微博",
               rightText: "点击绑定",
               onTap: () {}),
-          ItemDetail(
+          PersonDetailItem(
               leftIcon: Images.accountWeixin,
               leftText: "微信",
               rightText: "点击绑定",
               onTap: () {}),
-          ItemDetail(
+          PersonDetailItem(
               leftIcon: Images.accountQQ,
               leftText: "QQ",
               rightText: "点击绑定",
@@ -114,7 +114,7 @@ class _PersonDetailPageState extends State<PersonDetailPage> {
               style: TextStyle(color: Colours.app_main),
             ),
           ),
-          ItemDetail(
+          PersonDetailItem(
             leftIcon: Images.accountPassword,
             leftText: "修改密码",
             isRight: false,
@@ -124,11 +124,6 @@ class _PersonDetailPageState extends State<PersonDetailPage> {
           ),
           InkWell(
             borderRadius: new BorderRadius.circular(25.0),
-            //在最外层包裹InkWell组件
-//            onTap: () {
-//              NavigatorUtils.push(context, LoginRouter.loginPage,
-//                  clearStack: true);
-//            },
             onTap: () {
               showDialog(
                   context: context,
@@ -165,7 +160,6 @@ class _PersonDetailPageState extends State<PersonDetailPage> {
           height: 170,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               GestureDetector(
                 child: _itemCreat(context, '相机'),
