@@ -1,4 +1,4 @@
-import 'package:courseflutter/mode/login/person/item_detail.dart';
+import 'package:courseflutter/mode/login/person/person_detail_item.dart';
 import 'package:courseflutter/res/resources.dart';
 import 'package:courseflutter/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -83,17 +83,17 @@ class _MyAccountState extends State<MyAccountPage> {
         Container(
             child: Column(
           children: <Widget>[
-            ItemDetail(
+            PersonDetailItem(
                 leftIcon: Images.accountSet,
                 leftText: "离线缓存",
                 rightText: "",
                 onTap: () {}),
-            ItemDetail(
+            PersonDetailItem(
                 leftIcon: Images.accountSet,
                 leftText: "我的重点",
                 rightText: "",
                 onTap: () {}),
-            ItemDetail(
+            PersonDetailItem(
                 leftIcon: Images.accountSet,
                 leftText: "在线咨询",
                 rightText: "",
