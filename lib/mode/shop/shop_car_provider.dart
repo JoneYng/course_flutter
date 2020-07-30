@@ -46,7 +46,7 @@ class ShopCarProvider extends ChangeNotifier {
   /// 修改选择
   void changeSelectAll() {
     for (var i = 0; i < _listShopItem.length; i++) {
-      _listShopItem[i].isSelect = !_listShopItem[i].isSelect;
+      _listShopItem[i].isSelect = !selectAll;
     }
     setSelectAll();
     notifyListeners();
