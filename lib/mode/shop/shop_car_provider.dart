@@ -2,19 +2,17 @@ import 'package:courseflutter/mode/shop/discovery/bean/course_detail_bean.dart';
 import 'package:flutter/material.dart';
 
 class ShopCarProvider extends ChangeNotifier {
-  List<CourseDetail> _listShopItem = [];
-
+  List<CourseDetail> _listShopItem = [];//购物车列表
   List<CourseDetail> get listShopItem => _listShopItem;
-
   double selectMoney = 0; //选中金额
   int selectNum = 0;//选中数量
-
   bool selectAll = false;//是否全部选中
 
   ///添加到购物车
   bool addShop(CourseDetail shopItem) {
     shopItem.isSelect=false;
     for (var i = 0; i < _listShopItem.length; i++) {
+      //购物车里是否存在
       if (_listShopItem[i].id == shopItem.id) {
         return false;
       }
@@ -61,6 +59,8 @@ class ShopCarProvider extends ChangeNotifier {
         break;
       }
     }
+    calculationAmount();
+    notifyListeners();
   }
 
   /// 删除选中

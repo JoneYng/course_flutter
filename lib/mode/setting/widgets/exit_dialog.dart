@@ -6,11 +6,9 @@ import 'package:courseflutter/widgets/base_dialog.dart';
 import 'package:flutter/material.dart';
 
 class ExitDialog extends StatefulWidget{
-
   ExitDialog({
     Key key,
   }) : super(key : key);
-
   @override
   _ExitDialog createState() => _ExitDialog();
   

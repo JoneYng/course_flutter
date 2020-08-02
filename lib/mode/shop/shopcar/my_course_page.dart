@@ -94,7 +94,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
           return Row(
             children: <Widget>[
               Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Container(
                       child: Row(children: <Widget>[
                     Consumer<ShopCarProvider>(
@@ -109,11 +109,10 @@ class _ShopCarPageState extends State<ShopCarPage> {
                             : Images.ic_shop_unselect,
                       );
                     }),
+                    Text('全选',style: TextStyle(
+                        fontSize: 16.0, color: Colors.black)),
                     RichText(
                         text: TextSpan(
-                            text: '全选',
-                            style:
-                                TextStyle(fontSize: 14.0, color: Colors.black),
                             children: <TextSpan>[
                               TextSpan(
                                   text: '  合计:',
@@ -124,7 +123,7 @@ class _ShopCarPageState extends State<ShopCarPage> {
                                   style: TextStyle(
                                       fontSize: 18.0, color: Colors.red)),
                             ]),
-                        textAlign: TextAlign.left)
+                        textAlign: TextAlign.center)
                   ]))),
               Expanded(
                 flex: 1,
