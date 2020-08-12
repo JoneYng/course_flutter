@@ -79,6 +79,20 @@ class VideoClassPageState
     }
     if (_sideoEntityList != null && _sideoEntityList.length > 0) {
       return Scaffold(
+        /**
+         * 外面包裹下拉刷新控件
+         * 下拉刷新组件具体属性
+         * RefreshIndicator
+         *  ({
+         *   Key key,
+         *   @required this.child,子控件
+         *   this.displacement: 40.0, //触发下拉刷新的距离
+         *   @required this.onRefresh, //下拉回调方法,方法需要有async和await关键字，没有await，刷新图标立马消失，没有async，刷新图标不会消失
+         *   this.color, //进度指示器前景色 默认为系统主题色
+         *   this.backgroundColor, //背景色
+         *   this.notificationPredicate: defaultScrollNotificationPredicate,
+         *   })
+         */
         body: RefreshIndicator(
           child:  CustomScrollView(
             primary: false,
@@ -87,10 +101,10 @@ class VideoClassPageState
             //滑动效果，如阻尼效果等等
 //            physics: const BouncingScrollPhysics(),
             slivers: <Widget>[
-              getTitle(),
+              getTitle(),//上面的折叠布局
               SliverToBoxAdapter(
                 child: Gaps.vGap10,
-              ),
+              ),//就是个间距
               SliverGrid(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 250.0,
@@ -105,7 +119,7 @@ class VideoClassPageState
                   childCount: _sideoEntityList.length,
                 ),
               ),
-              new SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child:  Visibility(
                   child:  Container(
                     padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -114,12 +128,12 @@ class VideoClassPageState
                     ),
                   ),
                   visible: _provider.isLoadMore,
-
                 ),
-              ),
+              ),//Visibility包裹的文字，根据是否有更多数据显示/隐藏
             ],
           ),
           onRefresh: () {
+            //下拉刷新具体操作
             return _RrefreshPull().then((value) {
               print('success');
             }).catchError((error) {
