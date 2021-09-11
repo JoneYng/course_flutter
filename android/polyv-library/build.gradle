@@ -35,15 +35,20 @@ dependencies {
 
     implementation 'com.android.support:appcompat-v7:29.0.0'
 
-    compile ('com.easefun.polyv:polyvPlayer:2.7.2'){
-        exclude group:'com.android.support'
-    }
-    compile ('com.easefun.polyv:polyvPlayerABI:1.7.1')//SDK核心包
-    compile ('com.easefun.polyv:polyvDownload:2.7.1'){
-        exclude group:'com.android.support'
-    }//SDK下载功能
-    compile 'com.easefun.polyv:polyvScreencast:0.2.0'//SDK投屏功能
-    compile ('com.easefun.polyv:polyvUpload:2.2.2'){
-        exclude group:'com.android.support'
-    }
+//    compile ('com.easefun.polyv:polyvPlayer:2.7.2'){
+//        exclude group:'com.android.support'
+//    }
+//    compile ('com.easefun.polyv:polyvPlayerABI:1.7.1')//SDK核心包
+//    compile ('com.easefun.polyv:polyvDownload:2.7.1'){
+//        exclude group:'com.android.support'
+//    }//SDK下载功能
+//    compile 'com.easefun.polyv:polyvScreencast:0.2.0'//SDK投屏功能
+//    compile ('com.easefun.polyv:polyvUpload:2.2.2'){
+//        exclude group:'com.android.support'
+//    }
+
+    // 修改对应的sdk依赖，注意groupId已经变更，请整个依赖复制修改，请勿仅改动版本号
+    api 'net.polyv.android:polyvPlayer:2.16.3'//SDK核心包
+    api 'net.polyv.android:polyvDownload:2.16.3'//SDK下载功能
+    api 'net.polyv.android:polyvSub:2.16.3'//弹幕、截图功能中使用
 }
