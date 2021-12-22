@@ -98,12 +98,7 @@ class _HomeState extends State<Home> {
                       NavigatorUtils.push(context, ShopRouter.shopPage);
                     },
                   ),
-                  MainButton(
-                    text: "启航Demo",
-                    onTap: () {
-                      NavigatorUtils.push(context, ShopRouter.qhDemoPage);
-                    },
-                  )
+
                 ],
               ),
             ),
