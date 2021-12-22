@@ -51,4 +51,5 @@ dependencies {
     api 'net.polyv.android:polyvPlayer:2.16.3'//SDK核心包
     api 'net.polyv.android:polyvDownload:2.16.3'//SDK下载功能
     api 'net.polyv.android:polyvSub:2.16.3'//弹幕、截图功能中使用
+    api 'com.aliyun.ams:alicloud-android-utdid:2.5.1-proguard'
 }

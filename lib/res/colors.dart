@@ -41,5 +41,6 @@ class Colours {
   static const Color dark_bg_gray_ = Color(0xFF242526);
 
   static const Color open_class_button = Color(0xFF2196F3);
+
 }
 

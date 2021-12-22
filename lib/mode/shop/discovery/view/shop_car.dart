@@ -16,13 +16,10 @@ class ShopCarView extends StatelessWidget {
     return InkWell(
         onTap: onTap,
         child: Container(
-            height: 30,
-            alignment: Alignment.centerRight,
             child: Stack(
               children: <Widget>[
                 Icon(
                   Icons.shopping_cart,
-                  size: 26,
                 ),
                 Visibility(
                     visible: count > 0 ? true : false,
@@ -30,7 +27,7 @@ class ShopCarView extends StatelessWidget {
                       height: 15,
                       width: 15,
                       alignment: Alignment.center,
-                      margin: EdgeInsets.only(left: 15, bottom: 10),
+                      margin: EdgeInsets.only(left: 15, bottom: 0),
                       decoration: new BoxDecoration(
                         color: Colors.red, // 底色
                         borderRadius: new BorderRadius.circular((10.0)), // 圆角度

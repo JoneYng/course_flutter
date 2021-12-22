@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:courseflutter/mode/qhdemo/qh_index_page.dart';
 import 'package:courseflutter/mode/shop/shop_index_page.dart';
 import 'package:courseflutter/mode/shop/shopcar/my_course_page.dart';
 import 'package:courseflutter/routers/router_init.dart';
@@ -12,6 +13,9 @@ import 'discovery/bean/course_detail_bean.dart';
 
 
 class ShopRouter implements IRouterProvider{
+
+  static String qhDemoPage = '/qhDemo';
+
 
   static String shopPage = '/shop';
   static String courseDetail = '/shop/courseDetail';
@@ -28,6 +32,7 @@ class ShopRouter implements IRouterProvider{
           return CourseDetailPage(mCourseDetail);
         }
     );
+    router.define(qhDemoPage, handler: Handler(handlerFunc: (_, params) => QHShopIndexPage()));
     router.define(shopPage, handler: Handler(handlerFunc: (_, params) => ShopIndexPage()));
     router.define(courseShopCar, handler: Handler(handlerFunc: (_, params) => ShopCarPage()));
     router.define(courseDetail, handler: courseDetailHander);

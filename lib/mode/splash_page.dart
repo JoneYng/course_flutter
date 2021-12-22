@@ -50,7 +50,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 //Routes.home
   _goLogin() {
-    NavigatorUtils.push(context, LoginRouter.loginPage, clearStack: true);
+    NavigatorUtils.push(context, LoginRouter.qhLoginPage, clearStack: true);
   }
 
   @override

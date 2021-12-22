@@ -224,7 +224,7 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                               children: <Widget>[
                                 Icon(
                                   Icons.headset,
-                                  size: 25,
+                                  size: 20,
                                 ),
                                 Text('客服')
                               ],

@@ -2,6 +2,7 @@
 import 'package:courseflutter/mode/login/page/login_page_main.dart';
 import 'package:courseflutter/mode/login/page/update_username_page.dart';
 import 'package:courseflutter/mode/login/person/person_detail.dart';
+import 'package:courseflutter/mode/qhdemo/login/qh_login_page_main.dart';
 import 'package:courseflutter/routers/router_init.dart';
 import 'package:fluro/fluro.dart';
 
@@ -14,6 +15,7 @@ import 'page/update_password_page.dart';
 class LoginRouter implements IRouterProvider{
 
   static String loginPage = '/login';
+  static String qhLoginPage = 'qh/login';
   static String registerPage = '/login/register';
   static String smsLoginPage = '/login/smsLogin';
   static String resetPasswordPage = '/login/resetPassword';
@@ -23,6 +25,7 @@ class LoginRouter implements IRouterProvider{
 
   @override
   void initRouter(Router router) {
+    router.define(qhLoginPage, handler: Handler(handlerFunc: (_, params) => QHMainLoginPage()));
     router.define(loginPage, handler: Handler(handlerFunc: (_, params) => MainLoginPage()));
     router.define(registerPage, handler: Handler(handlerFunc: (_, params) => RegisterPage()));
     router.define(smsLoginPage, handler: Handler(handlerFunc: (_, params) => SMSLoginPage()));

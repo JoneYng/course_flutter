@@ -3,29 +3,29 @@ import 'dart:convert';
 import 'package:courseflutter/common/common.dart';
 import 'package:courseflutter/common/entity_factory.dart';
 
-class BaseEntity<T> {
-  int status;
-  String message;
-  T result;
+class QHBaseEntity<T> {
+  int code;
+  String msg;
+  T data;
   List<T> listData = [];
 
-  BaseEntity(this.status, this.message, this.result);
+  QHBaseEntity(this.code, this.msg, this.data);
 
   Map<String, dynamic> parseData(String data) {
     return json.decode(data);
   }
 
-  BaseEntity.fromJson(Map<String, dynamic> jsons) {
+  QHBaseEntity.fromJson(Map<String, dynamic> jsons) {
     var json = jsons[Constant.data];
-    status = json[Constant.status];
-    message = json[Constant.message];
-    if (json.containsKey(Constant.result)) {
-      if (json[Constant.result] is List) {
-        (json[Constant.result] as List).forEach((item) {
+    code = json[Constant.code];
+    msg = json[Constant.msg];
+    if (json.containsKey(Constant.data)) {
+      if (json[Constant.data] is List) {
+        (json[Constant.data] as List).forEach((item) {
           listData.add(_generateOBJ<T>(item));
         });
       } else {
-        result = _generateOBJ(json[Constant.result]);
+        data = _generateOBJ(json[Constant.data]);
       }
     }
   }
@@ -36,7 +36,6 @@ class BaseEntity<T> {
     } else if (T.toString() == 'Map<dynamic, dynamic>') {
       return json as S;
     } else {
-      print('发送请求2：${json.toString()}');
       return EntityFactory.generateOBJ(json);
     }
   }

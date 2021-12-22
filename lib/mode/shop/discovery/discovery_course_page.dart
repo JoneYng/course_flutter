@@ -204,6 +204,7 @@ class ShopPageState extends BasePageState<DiscoveryCoursePage, ShopPresenter>
         autoplay: true,
         // 自动翻页
         itemBuilder: (BuildContext context, int index) {
+          //banner item 布局
           return Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
